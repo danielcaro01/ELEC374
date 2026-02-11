@@ -1,0 +1,11 @@
+module DataPath (input clk, clr, R0in, R1in, R2in, Mdatain, BusMuxSel);
+	wire [31:0] BusMuxOut, BusMuxInR0, BusMuxInR1, BusMuxInR2, BusMuxInR3, BusMuxInR4, BusMuxInR5, BusMuxInR6, BusMuxInR7, BusMuxInR8, BusMuxInR9, BusMuxInR10, BusMuxInR11, BusMuxInR12, BusMuxInR13, BusMuxInR14, BusMuxInR15, BusMuxInHI, BusMuxInLO, BusMuxInZhigh, BusMuxInZlow, BusMuxInPC, BusMuxInMDR, BusMuxInInport, BusMuxInCsignext;
+	wire [4:0] BusMuxSel;
+	
+	register R0 (BusMuxInR0, BusMuxOut, clr, clk, R0in);
+	register R1 (BusMuxInR1, BusMuxOut, clr, clk, R1in);
+	register R2 (BusMuxInR1, BusMuxOut, clr, clk, R1in);
+	
+	Bus bus (BusMuxOut, BusMuxInR0, BusMuxInR1, BusMuxInR2, BusMuxInR3, BusMuxInR4, BusMuxInR5, BusMuxInR6, BusMuxInR7, BusMuxInR8, BusMuxInR9, BusMuxInR10, BusMuxInR11, BusMuxInR12, BusMuxInR13, BusMuxInR14, BusMuxInR15, BusMuxInHI, BusMuxInLO, BusMuxInZhigh, BusMuxInZlow, BusMuxInPC, BusMuxInMDR, BusMuxInInport, BusMuxInCsignext, BusMuxSel);
+endmodule;
+	

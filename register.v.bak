@@ -1,0 +1,18 @@
+module register #(parameter size)(output busMuxIn, input busMuxOut, clr, clock, Rin);
+	reg [size-1:0] Q;
+	
+	always @(posedge clk)
+		begin
+			if(clr) begin
+				Q <= {size{1'b0}};
+			end
+			else if(Rin) begin
+				Q <= busMuxOut;
+			end
+		end
+	assign busMuxIn = q[size-1:0];
+endmodule
+			
+	
+
+	
