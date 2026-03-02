@@ -1,0 +1,136 @@
+`timescale 1ns/10ps
+
+module tb_sub;
+    // --- Signal Declarations ---
+    reg clk, clr, Read, MARin, PCin, MDRin, IRin, Yin, Zin, IncPC;
+    reg R0in, R1in, R2in, R3in, R4in, R5in, R6in, R7in, HIin, LOin;
+    reg AND_op, OR_op, ADD_op, SUB_op, MUL_op, DIV_op;
+    reg SHR_op, SHRA_op, SHL_op, ROR_op, ROL_op, NEG_op, NOT_op;
+    reg [31:0] Mdatain; 
+    reg [4:0] BusMuxSel;
+
+    // --- State Parameters ---
+    parameter Default     = 4'b0000, 
+              Reg_load1a  = 4'b0001, 
+              Reg_load1b  = 4'b0010, 
+              Reg_load2a  = 4'b0011, 
+              Reg_load2b  = 4'b0100, 
+              T0          = 4'b0101, 
+              T1          = 4'b0110, 
+              T2          = 4'b0111, 
+              T3          = 4'b1000, 
+              T4          = 4'b1001, 
+              T5          = 4'b1010;
+
+    reg [3:0] Present_state = Default;
+
+    // --- DUT Instantiation ---
+    // Note: Ensure your DataPath module ports match these signal names [cite: 148, 645]
+    DataPath DUT (
+        .clk(clk), .clr(clr), .Read(Read), .MARin(MARin), .PCin(PCin), 
+        .MDRin(MDRin), .IRin(IRin), .Yin(Yin), .Zin(Zin), .IncPC(IncPC),
+        .R0in(R0in), .R1in(R1in), .R2in(R2in), .R3in(R3in), .R4in(R4in), 
+        .R5in(R5in), .R6in(R6in), .R7in(R7in), .HIin(HIin), .LOin(LOin),
+        .AND_op(AND_op), .OR_op(OR_op), .ADD_op(ADD_op), .SUB_op(SUB_op), 
+        .MUL_op(MUL_op), .DIV_op(DIV_op), .SHR_op(SHR_op), .SHRA_op(SHRA_op), 
+        .SHL_op(SHL_op), .ROR_op(ROR_op), .ROL_op(ROL_op), .NEG_op(NEG_op), 
+        .NOT_op(NOT_op), .Mdatain(Mdatain), .BusMuxSel(BusMuxSel)
+    );
+
+    // --- Clock Generation ---
+    initial begin 
+        clk = 0; 
+        forever #10 clk = ~clk; 
+    end
+
+    // --- State Transitions ---
+    always @(posedge clk) begin
+        case (Present_state)
+            Default:    Present_state <= Reg_load1a; 
+            Reg_load1a: Present_state <= Reg_load1b;
+            Reg_load1b: Present_state <= Reg_load2a; 
+            Reg_load2a: Present_state <= Reg_load2b;
+            Reg_load2b: Present_state <= T0; 
+            T0:         Present_state <= T1;
+            T1:         Present_state <= T2; 
+            T2:         Present_state <= T3;
+            T3:         Present_state <= T4; 
+            T4:         Present_state <= T5;
+            T5:         Present_state <= Default; // Loop back to start
+        endcase
+    end
+
+    // --- Control Signal Logic ---
+    always @(*) begin
+        // Initialize all control signals to 0 [cite: 170, 171]
+        {clr, Read, MARin, PCin, MDRin, IRin, Yin, Zin, IncPC, 
+         R0in, R1in, R2in, R3in, R4in, R5in, R6in, R7in, HIin, LOin} = 19'b0;
+        {AND_op, OR_op, ADD_op, SUB_op, MUL_op, DIV_op, 
+         SHR_op, SHRA_op, SHL_op, ROR_op, ROL_op, NEG_op, NOT_op} = 13'b0; 
+        BusMuxSel = 5'b0;
+
+        case (Present_state)
+            Default: begin
+                clr = 1; [cite: 212]
+            end
+
+            Reg_load1a: begin 
+                Mdatain = 32'h45; 
+                Read = 1; 
+                MDRin = 1; [cite: 213]
+            end
+
+            Reg_load1b: begin 
+                BusMuxSel = 5'd21; // MDR output to Bus
+                R5in = 1; [cite: 214]
+            end
+
+            Reg_load2a: begin 
+                Mdatain = 32'h34; 
+                Read = 1; 
+                MDRin = 1; [cite: 215]
+            end
+
+            Reg_load2b: begin 
+                BusMuxSel = 5'd21; // MDR output to Bus
+                R6in = 1; [cite: 216]
+            end
+
+            T0: begin 
+                BusMuxSel = 5'd20; // PC output to Bus
+                MARin = 1; 
+                IncPC = 1; 
+                Zin = 1; [cite: 217]
+            end
+
+            T1: begin 
+                BusMuxSel = 5'd19; // Z (PC+1) to Bus
+                PCin = 1; 
+                Read = 1; 
+                MDRin = 1; 
+                Mdatain = 32'h0; [cite: 218]
+            end
+
+            T2: begin 
+                BusMuxSel = 5'd21; // MDR to Bus
+                IRin = 1; [cite: 219]
+            end
+
+            T3: begin 
+                BusMuxSel = 5'd5; // R5 to Bus
+                Yin = 1; [cite: 220]
+            end
+
+            T4: begin 
+                BusMuxSel = 5'd6; // R6 to Bus
+                SUB_op = 1; 
+                Zin = 1; [cite: 221]
+            end
+
+            T5: begin 
+                BusMuxSel = 5'd19; // Result from Z to Bus
+                R2in = 1; [cite: 222]
+            end
+        endcase
+    end
+endmodule
