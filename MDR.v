@@ -1,20 +1,20 @@
 
 
 
-// Recommended MDR.v
+// new MDR.v
 module MDR (output [31:0] MDRout, input [31:0] Mdatain, busMuxOut, input Read, clr, clock, MDRin);
-    reg [31:0] MDRDatain; // Corrected casing to match your usage below
+    reg [31:0] MDRDatain; 
     
-    // Internal register instance 
+    
     register MDRreg (MDRout, MDRDatain, clr, clock, MDRin);
     
-    always @(*) // Combinational logic for the input mux [cite: 192]
+    always @(*) 
     begin
         if(Read == 1'b1) begin
-            MDRDatain = Mdatain; // Select memory input [cite: 201, 202]
+            MDRDatain = Mdatain; 
         end
         else begin
-            MDRDatain = busMuxOut; // Select bus input [cite: 200, 202]
+            MDRDatain = busMuxOut; 
         end
     end
 endmodule
