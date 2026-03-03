@@ -5,15 +5,15 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Desktop/ELEC374-main {C:/Users/22lhq1/Desktop/ELEC374-main/register.v}
-vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Desktop/ELEC374-main {C:/Users/22lhq1/Desktop/ELEC374-main/DataPath.v}
-vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Desktop/ELEC374-main {C:/Users/22lhq1/Desktop/ELEC374-main/Bus.v}
-vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Desktop/ELEC374-main {C:/Users/22lhq1/Desktop/ELEC374-main/MDR.v}
-vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Desktop/ELEC374-main {C:/Users/22lhq1/Desktop/ELEC374-main/ALU.v}
+vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v}
+vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v}
+vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v}
+vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v}
+vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v}
 
-vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Desktop/ELEC374-main {C:/Users/22lhq1/Desktop/ELEC374-main/tb_and.v}
+vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v}
 
-vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  tb_and
+vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  tb_not
 
 add wave *
 view structure

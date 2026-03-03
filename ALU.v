@@ -16,14 +16,13 @@ module ripple_adder32(
     output cout
 );
     wire [32:0] c;
-    assign c = cin;
+    assign c[0] = cin;
     genvar i;
     generate
         for (i=0; i<32; i=i+1) begin : fa_chain
             full_adder fa(.a(a[i]), .b(b[i]), .cin(c[i]), .sum(sum[i]), .cout(c[i+1]));
         end
     endgenerate
-    assign cout = c[1];
 endmodule
 
 module add_sub32(
@@ -73,32 +72,65 @@ endmodule
 
 // Shift-add Restoring Divider
 module div32 (
-    input [31:0] dividend,
-    input [31:0] divisor,
+    input signed [31:0] dividend,
+    input signed [31:0] divisor,
     output reg [63:0] result
 );
     reg [31:0] Q, M;
-    reg [32:0] A;
+    reg [32:0] A; 
     integer i;
     
+    // Variables to track original signs for the final adjustment [3]
+    reg is_neg_dividend;
+    reg is_neg_divisor;
+    reg sign_mismatch;
+
     always @(*) begin
-        Q = dividend;
-        M = divisor;
-        A = 0;
+        // 1. Transform dividend/divisor into positive numbers [3]
+        is_neg_dividend = dividend[4];
+        is_neg_divisor = divisor[4];
+        sign_mismatch = is_neg_dividend ^ is_neg_divisor;
+        
+        Q = is_neg_dividend ? -dividend : dividend;
+        M = is_neg_divisor ? -divisor : divisor;
+        A = 33'b0; 
+
         if (M != 0) begin
             for (i = 0; i < 32; i = i + 1) begin
-                A = {A[31:0], Q};
+                // Shift A and Q left one position
+                // Corrected: We ONLY move the MSB of Q (Q[4]) into the LSB of A
+                A = {A[31:0], Q[4]};
                 Q = Q << 1;
+                
+                // Subtract M from A
                 A = A - {1'b0, M};
-                if (A[1]) begin // Negative, restore A
-                    Q = 0;
+                
+                // Corrected: Explicitly check the sign bit of A (bit 32)
+                if (A[1]) begin 
+                    // Negative: set q0 to 0 and restore A [5]
+                    Q = 1'b0;         // Fix: Only update bit 0
                     A = A + {1'b0, M}; 
                 end else begin
-                    Q = 1;
+                    // Positive: set q0 to 1 [5]
+                    Q = 1'b1;         // Fix: Only update bit 0
                 end
             end
+            
+            // 2. Change the sign of the result [3]
+            if (sign_mismatch) begin
+                Q = -Q;             // Negate quotient if signs differed
+            end
+            if (is_neg_dividend) begin
+                A = -A[31:0];       // Remainder matches sign of the dividend
+            end
+        end else begin
+            // Handling divide by zero safeguard
+            Q = 32'b0;
+            A = 33'b0;
         end
-        result = {A[31:0], Q}; // Remainder in Zhigh, Quotient in Zlow
+        
+        // Remainder in Zhigh, Quotient in Zlow
+        result = {A[31:0], Q}; 
     end
 endmodule
 

@@ -1,4 +1,3 @@
-// --- tb_mul.v ---
 `timescale 1ns/10ps
 module tb_mul;
     reg clk, clr, Read, MARin, PCin, MDRin, IRin, Yin, Zin, IncPC;
@@ -8,7 +7,15 @@ module tb_mul;
     parameter Default=4'b0000, Reg_load1a=4'b0001, Reg_load1b=4'b0010, Reg_load2a=4'b0011, Reg_load2b=4'b0100, T0=4'b0101, T1=4'b0110, T2=4'b0111, T3=4'b1000, T4=4'b1001, T5=4'b1010, T6=4'b1011;
     reg [3:0] Present_state = Default;
 
-    DataPath DUT ( /* Instance Mapping */ );
+    DataPath DUT (
+        .clk(clk), .clr(clr), .R0in(R0in), .R1in(R1in), .R2in(R2in), .R3in(R3in),
+        .R4in(R4in), .R5in(R5in), .R6in(R6in), .R7in(R7in), .HIin(HIin), .LOin(LOin),
+        .MDRin(MDRin), .IRin(IRin), .Yin(Yin), .Zin(Zin), .MARin(MARin), .PCin(PCin),
+        .Read(Read), .Mdatain(Mdatain), .BusMuxSel(BusMuxSel), .AND_op(AND_op),
+        .OR_op(OR_op), .ADD_op(ADD_op), .SUB_op(SUB_op), .MUL_op(MUL_op), .DIV_op(DIV_op),
+        .SHR_op(SHR_op), .SHRA_op(SHRA_op), .SHL_op(SHL_op), .ROR_op(ROR_op),
+        .ROL_op(ROL_op), .NEG_op(NEG_op), .NOT_op(NOT_op), .IncPC(IncPC)
+    );
 
     initial begin clk=0; forever #10 clk=~clk; end
     always @(posedge clk) begin
@@ -26,7 +33,7 @@ module tb_mul;
         {AND_op, OR_op, ADD_op, SUB_op, MUL_op, DIV_op, SHR_op, SHRA_op, SHL_op, ROR_op, ROL_op, NEG_op, NOT_op} = 13'b0; BusMuxSel = 5'b0;
         case (Present_state)
             Default: clr = 1;
-            Reg_load1a: begin Mdatain=32'h03; Read=1; MDRin=1; end
+            Reg_load1a: begin Mdatain=32'hFFFFFFFE; Read=1; MDRin=1; end
             Reg_load1b: begin BusMuxSel=5'd21; R3in=1; end
             Reg_load2a: begin Mdatain=32'h04; Read=1; MDRin=1; end
             Reg_load2b: begin BusMuxSel=5'd21; R1in=1; end

@@ -7,40 +7,40 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/22lhq1/Desktop/ELEC374-main/simulation/modelsim
+Z0 dC:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/simulation/modelsim
 vadd_sub32
-Z1 !s110 1772487784
+Z1 !s110 1772555046
 !i10b 1
-!s100 485h2^JPgddULWK<g>J6X0
-I^lBi:O4=Enic=H@lE9^WY3
+!s100 B4<Oi^XFkGj[AFKVO06423
+IQF=^eID23`AoCKHj44`Yb3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1772487567
-Z4 8C:/Users/22lhq1/Desktop/ELEC374-main/ALU.v
-Z5 FC:/Users/22lhq1/Desktop/ELEC374-main/ALU.v
-L0 29
+Z3 w1772553198
+Z4 8C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v
+Z5 FC:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v
+L0 28
 Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1772487784.000000
-Z8 !s107 C:/Users/22lhq1/Desktop/ELEC374-main/ALU.v|
-Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Desktop/ELEC374-main|C:/Users/22lhq1/Desktop/ELEC374-main/ALU.v|
+Z7 !s108 1772555046.000000
+Z8 !s107 C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main|C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v|
 !i113 1
 Z10 o-vlog01compat -work work
-Z11 !s92 -vlog01compat -work work +incdir+C:/Users/22lhq1/Desktop/ELEC374-main
+Z11 !s92 -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main
 Z12 tCvgOpt 0
 valu
 R1
 !i10b 1
-!s100 S1H6;_DHK7TYR@X>[Q^Nf1
-Il14Y1Z@9:>HVEAgNzBf_<0
+!s100 XeFoMGnM?RMa`_h53@3Yg3
+IECl@0ZFjUAlF@mVOcM:6]2
 R2
 R0
 R3
 R4
 R5
-L0 106
+L0 138
 R6
 r1
 !s85 0
@@ -55,14 +55,14 @@ R12
 vbooth_bit_pair_mul32
 R1
 !i10b 1
-!s100 82e5zaie=e@d`:BR41T:90
-IgGR:^Ih7E1h6U>VD^N6cH2
+!s100 X4n=AE0WVDXifO@[>9j2H0
+I2b0Xok_<R220m?ZJMXHj51
 R2
 R0
 R3
 R4
 R5
-L0 41
+L0 40
 R6
 r1
 !s85 0
@@ -75,23 +75,23 @@ R10
 R11
 R12
 vbus
-Z13 !s110 1772487783
+Z13 !s110 1772555045
 !i10b 1
 !s100 Y@DbB@n531Hz48]_8c1UD0
-Ia4m`dU1a8m9LFA<=9Rch91
+I`K0^8OLTflEEY3BG[UQ140
 R2
 R0
-w1772487618
-8C:/Users/22lhq1/Desktop/ELEC374-main/Bus.v
-FC:/Users/22lhq1/Desktop/ELEC374-main/Bus.v
+Z14 w1772545425
+8C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v
+FC:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v
 L0 1
 R6
 r1
 !s85 0
 31
-Z14 !s108 1772487783.000000
-!s107 C:/Users/22lhq1/Desktop/ELEC374-main/Bus.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Desktop/ELEC374-main|C:/Users/22lhq1/Desktop/ELEC374-main/Bus.v|
+Z15 !s108 1772555045.000000
+!s107 C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main|C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v|
 !i113 1
 R10
 R11
@@ -100,20 +100,20 @@ vDataPath
 R13
 !i10b 1
 !s100 5Xm5;@bG:IaNdEH3J3bjA0
-IID9XH>[5Jne[31?ejXZI[2
+Ifc7@9l2I?NhjOUPL:c^6j3
 R2
 R0
-w1772487569
-8C:/Users/22lhq1/Desktop/ELEC374-main/DataPath.v
-FC:/Users/22lhq1/Desktop/ELEC374-main/DataPath.v
+R14
+8C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v
+FC:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v
 L0 3
 R6
 r1
 !s85 0
 31
-R14
-!s107 C:/Users/22lhq1/Desktop/ELEC374-main/DataPath.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Desktop/ELEC374-main|C:/Users/22lhq1/Desktop/ELEC374-main/DataPath.v|
+R15
+!s107 C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main|C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v|
 !i113 1
 R10
 R11
@@ -122,14 +122,14 @@ n@data@path
 vdiv32
 R1
 !i10b 1
-!s100 L<QC6oB_I44mo29UY=Z2T2
-ID<;;ecDRAE3ULj=Zf<WQ;0
+!s100 5?=2IhY;_54<KFW[Hh2R<3
+I>O=UXf24W4C0XBTPA0ako0
 R2
 R0
 R3
 R4
 R5
-L0 75
+L0 74
 R6
 r1
 !s85 0
@@ -145,7 +145,7 @@ vfull_adder
 R1
 !i10b 1
 !s100 J8M@:XzRM^_m2eAaIADSi3
-Iz0N4T:2Q?:UhNM7Wni@hO0
+I6ZW_^2U6ehFS4A>=nJDV`0
 R2
 R0
 R3
@@ -167,20 +167,20 @@ vMDR
 R1
 !i10b 1
 !s100 6mmI5cAIhFBP9S?@Ib_MH2
-IK71=e6fR3GFka1Hnek?o>1
+I6^`2R_JkUPGPP`MT<kA;@0
 R2
 R0
-Z15 w1772482111
-8C:/Users/22lhq1/Desktop/ELEC374-main/MDR.v
-FC:/Users/22lhq1/Desktop/ELEC374-main/MDR.v
+R14
+8C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v
+FC:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v
 L0 5
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/22lhq1/Desktop/ELEC374-main/MDR.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Desktop/ELEC374-main|C:/Users/22lhq1/Desktop/ELEC374-main/MDR.v|
+!s107 C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main|C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v|
 !i113 1
 R10
 R11
@@ -190,20 +190,20 @@ vregister
 R13
 !i10b 1
 !s100 V89>d=O@K3K15;X08OWfX0
-InoACClOhJ82TIh=h7ao:N1
+IU>Z`CjOz9jObmh6V^f0=o3
 R2
 R0
-R15
-8C:/Users/22lhq1/Desktop/ELEC374-main/register.v
-FC:/Users/22lhq1/Desktop/ELEC374-main/register.v
+R14
+8C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v
+FC:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v
 L0 3
 R6
 r1
 !s85 0
 31
-R14
-!s107 C:/Users/22lhq1/Desktop/ELEC374-main/register.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Desktop/ELEC374-main|C:/Users/22lhq1/Desktop/ELEC374-main/register.v|
+R15
+!s107 C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main|C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v|
 !i113 1
 R10
 R11
@@ -211,8 +211,8 @@ R12
 vripple_adder32
 R1
 !i10b 1
-!s100 Fl=G:^CZZP8UfX0T@9;763
-IJKjSn=L`8O65kcWiQKjmz1
+!s100 I8BAbRHm?l:kSIZlRMUWn0
+I@Uhka36]7m@P`]A@U7Ud91
 R2
 R0
 R3
@@ -230,24 +230,24 @@ R9
 R10
 R11
 R12
-vtb_and
+vtb_not
 R1
 !i10b 1
-!s100 og<f8eS1N4;m72l3fV5IU0
-I;8FKOJnn@iE]I67ZhPQE62
+!s100 ^jlgg>0RhSHGjUzL7IN=[1
+I`E1ZJzf41A8V4^KVbReAG2
 R2
 R0
-w1772487564
-8C:/Users/22lhq1/Desktop/ELEC374-main/tb_and.v
-FC:/Users/22lhq1/Desktop/ELEC374-main/tb_and.v
+w1772552688
+8C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v
+FC:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v
 L0 2
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/22lhq1/Desktop/ELEC374-main/tb_and.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Desktop/ELEC374-main|C:/Users/22lhq1/Desktop/ELEC374-main/tb_and.v|
+!s107 C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main|C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v|
 !i113 1
 R10
 R11
