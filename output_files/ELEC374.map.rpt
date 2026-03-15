@@ -1,5 +1,5 @@
 Analysis & Elaboration report for ELEC374
-Tue Mar 03 11:20:48 2026
+Sun Mar 15 17:42:40 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -9,45 +9,39 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
   1. Legal Notice
   2. Analysis & Elaboration Summary
   3. Parallel Compilation
-  4. Parameter Settings for User Entity Instance: register:R0
-  5. Parameter Settings for User Entity Instance: register:R1
-  6. Parameter Settings for User Entity Instance: register:R2
-  7. Parameter Settings for User Entity Instance: register:R3
-  8. Parameter Settings for User Entity Instance: register:R4
-  9. Parameter Settings for User Entity Instance: register:R5
- 10. Parameter Settings for User Entity Instance: register:R6
- 11. Parameter Settings for User Entity Instance: register:R7
- 12. Parameter Settings for User Entity Instance: register:R8
- 13. Parameter Settings for User Entity Instance: register:R9
- 14. Parameter Settings for User Entity Instance: register:R10
- 15. Parameter Settings for User Entity Instance: register:R11
- 16. Parameter Settings for User Entity Instance: register:R12
- 17. Parameter Settings for User Entity Instance: register:R13
- 18. Parameter Settings for User Entity Instance: register:R14
- 19. Parameter Settings for User Entity Instance: register:R15
- 20. Parameter Settings for User Entity Instance: register:HI
- 21. Parameter Settings for User Entity Instance: register:LO
- 22. Parameter Settings for User Entity Instance: register:PC
- 23. Parameter Settings for User Entity Instance: register:IR
- 24. Parameter Settings for User Entity Instance: register:Y
- 25. Parameter Settings for User Entity Instance: register:MAR
- 26. Parameter Settings for User Entity Instance: MDR:mdr_unit|register:MDRreg
- 27. Parameter Settings for User Entity Instance: register:Z
- 28. Analysis & Elaboration Settings
- 29. Port Connectivity Checks: "bus:main_bus"
- 30. Port Connectivity Checks: "alu:alu_unit|add_sub32:add_sub_unit|ripple_adder32:add|full_adder:fa_chain[31].fa"
- 31. Port Connectivity Checks: "alu:alu_unit|add_sub32:add_sub_unit"
- 32. Port Connectivity Checks: "register:MAR"
- 33. Port Connectivity Checks: "register:IR"
- 34. Port Connectivity Checks: "register:R15"
- 35. Port Connectivity Checks: "register:R14"
- 36. Port Connectivity Checks: "register:R13"
- 37. Port Connectivity Checks: "register:R12"
- 38. Port Connectivity Checks: "register:R11"
- 39. Port Connectivity Checks: "register:R10"
- 40. Port Connectivity Checks: "register:R9"
- 41. Port Connectivity Checks: "register:R8"
- 42. Analysis & Elaboration Messages
+  4. Parameter Settings for User Entity Instance: register:InPortReg
+  5. Parameter Settings for User Entity Instance: register:OutPortReg
+  6. Parameter Settings for User Entity Instance: register_r0:R0
+  7. Parameter Settings for User Entity Instance: register:R1
+  8. Parameter Settings for User Entity Instance: register:R2
+  9. Parameter Settings for User Entity Instance: register:R3
+ 10. Parameter Settings for User Entity Instance: register:R4
+ 11. Parameter Settings for User Entity Instance: register:R5
+ 12. Parameter Settings for User Entity Instance: register:R6
+ 13. Parameter Settings for User Entity Instance: register:R7
+ 14. Parameter Settings for User Entity Instance: register:R8
+ 15. Parameter Settings for User Entity Instance: register:R9
+ 16. Parameter Settings for User Entity Instance: register:R10
+ 17. Parameter Settings for User Entity Instance: register:R11
+ 18. Parameter Settings for User Entity Instance: register:R12
+ 19. Parameter Settings for User Entity Instance: register:R13
+ 20. Parameter Settings for User Entity Instance: register:R14
+ 21. Parameter Settings for User Entity Instance: register:R15
+ 22. Parameter Settings for User Entity Instance: register:HI
+ 23. Parameter Settings for User Entity Instance: register:LO
+ 24. Parameter Settings for User Entity Instance: register:PC
+ 25. Parameter Settings for User Entity Instance: register:IR
+ 26. Parameter Settings for User Entity Instance: register:Y
+ 27. Parameter Settings for User Entity Instance: register:MAR
+ 28. Parameter Settings for User Entity Instance: MDR:mdr_unit|register:MDRreg
+ 29. Parameter Settings for User Entity Instance: register:Z
+ 30. Analysis & Elaboration Settings
+ 31. Port Connectivity Checks: "alu:alu_unit|add_sub32:add_sub_unit|ripple_adder32:add|full_adder:fa_chain[31].fa"
+ 32. Port Connectivity Checks: "alu:alu_unit|add_sub32:add_sub_unit"
+ 33. Port Connectivity Checks: "register:MAR"
+ 34. Port Connectivity Checks: "register_r0:R0"
+ 35. Port Connectivity Checks: "register:InPortReg"
+ 36. Analysis & Elaboration Messages
 
 
 
@@ -73,7 +67,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                  ;
 +-------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status ; Successful - Tue Mar 03 11:20:48 2026           ;
+; Analysis & Elaboration Status ; Successful - Sun Mar 15 17:42:40 2026           ;
 ; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
 ; Revision Name                 ; ELEC374                                         ;
 ; Top-level Entity Name         ; DataPath                                        ;
@@ -93,7 +87,7 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 20          ;
+; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
@@ -104,13 +98,33 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------+
-; Parameter Settings for User Entity Instance: register:R0 ;
-+----------------+-------+---------------------------------+
-; Parameter Name ; Value ; Type                            ;
-+----------------+-------+---------------------------------+
-; size           ; 32    ; Signed Integer                  ;
-+----------------+-------+---------------------------------+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:InPortReg ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; size           ; 32    ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register:OutPortReg ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; size           ; 32    ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: register_r0:R0 ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; size           ; 32    ; Signed Integer                     ;
++----------------+-------+------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -431,16 +445,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------------+
-; Port Connectivity Checks: "bus:main_bus"       ;
-+--------------+-------+----------+--------------+
-; Port         ; Type  ; Severity ; Details      ;
-+--------------+-------+----------+--------------+
-; InPort       ; Input ; Info     ; Stuck at GND ;
-; C_sign_extin ; Input ; Info     ; Stuck at GND ;
-+--------------+-------+----------+--------------+
-
-
 +----------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "alu:alu_unit|add_sub32:add_sub_unit|ripple_adder32:add|full_adder:fa_chain[31].fa"  ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -459,94 +463,31 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "register:MAR"                                                                           ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; busMuxIn ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "register:MAR"                                                                                  ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; busMuxIn[31..9] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "register:IR"                                                                            ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; busMuxIn ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "register_r0:R0"                                                                                                                                                                   ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                                                            ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Rin  ; Input ; Warning  ; Input port expression (16 bits) is wider than the input port (1 bits) it drives.  The 15 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+------------------------------------------+
-; Port Connectivity Checks: "register:R15" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; Rin  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "register:R14" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; Rin  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "register:R13" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; Rin  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "register:R12" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; Rin  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "register:R11" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; Rin  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+------------------------------------------+
-; Port Connectivity Checks: "register:R10" ;
-+------+-------+----------+----------------+
-; Port ; Type  ; Severity ; Details        ;
-+------+-------+----------+----------------+
-; Rin  ; Input ; Info     ; Stuck at GND   ;
-+------+-------+----------+----------------+
-
-
-+-----------------------------------------+
-; Port Connectivity Checks: "register:R9" ;
-+------+-------+----------+---------------+
-; Port ; Type  ; Severity ; Details       ;
-+------+-------+----------+---------------+
-; Rin  ; Input ; Info     ; Stuck at GND  ;
-+------+-------+----------+---------------+
-
-
-+-----------------------------------------+
-; Port Connectivity Checks: "register:R8" ;
-+------+-------+----------+---------------+
-; Port ; Type  ; Severity ; Details       ;
-+------+-------+----------+---------------+
-; Rin  ; Input ; Info     ; Stuck at GND  ;
-+------+-------+----------+---------------+
++------------------------------------------------+
+; Port Connectivity Checks: "register:InPortReg" ;
++------+-------+----------+----------------------+
+; Port ; Type  ; Severity ; Details              ;
++------+-------+----------+----------------------+
+; Rin  ; Input ; Info     ; Stuck at VCC         ;
++------+-------+----------+----------------------+
 
 
 +---------------------------------+
@@ -555,74 +496,90 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Tue Mar 03 11:20:33 2026
+    Info: Processing started: Sun Mar 15 17:42:33 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ELEC374 -c ELEC374 --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 16 of the 20 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file register.v
-    Info (12023): Found entity 1: register File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v Line: 3
+    Info (12023): Found entity 1: register File: C:/Users/20djc12/ELEC374/register.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file datapath.v
-    Info (12023): Found entity 1: DataPath File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v Line: 3
+    Info (12023): Found entity 1: DataPath File: C:/Users/20djc12/ELEC374/DataPath.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file bus.v
-    Info (12023): Found entity 1: bus File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v Line: 1
+    Info (12023): Found entity 1: bus File: C:/Users/20djc12/ELEC374/Bus.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file datapath_tb.v
-    Info (12023): Found entity 1: datapath_tb File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/datapath_tb.v Line: 3
+    Info (12023): Found entity 1: datapath_tb File: C:/Users/20djc12/ELEC374/datapath_tb.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file mdr.v
-    Info (12023): Found entity 1: MDR File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v Line: 5
+    Info (12023): Found entity 1: MDR File: C:/Users/20djc12/ELEC374/MDR.v Line: 5
 Info (12021): Found 6 design units, including 6 entities, in source file alu.v
-    Info (12023): Found entity 1: full_adder File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 3
-    Info (12023): Found entity 2: ripple_adder32 File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 11
-    Info (12023): Found entity 3: add_sub32 File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 28
-    Info (12023): Found entity 4: booth_bit_pair_mul32 File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 40
-    Info (12023): Found entity 5: div32 File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 74
-    Info (12023): Found entity 6: alu File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 138
+    Info (12023): Found entity 1: full_adder File: C:/Users/20djc12/ELEC374/ALU.v Line: 3
+    Info (12023): Found entity 2: ripple_adder32 File: C:/Users/20djc12/ELEC374/ALU.v Line: 11
+    Info (12023): Found entity 3: add_sub32 File: C:/Users/20djc12/ELEC374/ALU.v Line: 28
+    Info (12023): Found entity 4: booth_bit_pair_mul32 File: C:/Users/20djc12/ELEC374/ALU.v Line: 40
+    Info (12023): Found entity 5: div32 File: C:/Users/20djc12/ELEC374/ALU.v Line: 74
+    Info (12023): Found entity 6: alu File: C:/Users/20djc12/ELEC374/ALU.v Line: 138
 Info (12021): Found 1 design units, including 1 entities, in source file tb_add.v
-    Info (12023): Found entity 1: tb_add File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_add.v Line: 2
+    Info (12023): Found entity 1: tb_add File: C:/Users/20djc12/ELEC374/tb_add.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_mul.v
-    Info (12023): Found entity 1: tb_mul File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_mul.v Line: 2
+    Info (12023): Found entity 1: tb_mul File: C:/Users/20djc12/ELEC374/tb_mul.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_div.v
-    Info (12023): Found entity 1: tb_div File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_div.v Line: 2
+    Info (12023): Found entity 1: tb_div File: C:/Users/20djc12/ELEC374/tb_div.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_sub.v
-    Info (12023): Found entity 1: tb_sub File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_sub.v Line: 2
+    Info (12023): Found entity 1: tb_sub File: C:/Users/20djc12/ELEC374/tb_sub.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_and.v
-    Info (12023): Found entity 1: tb_and File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_and.v Line: 2
+    Info (12023): Found entity 1: tb_and File: C:/Users/20djc12/ELEC374/tb_and.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_or.v
-    Info (12023): Found entity 1: tb_or File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_or.v Line: 2
+    Info (12023): Found entity 1: tb_or File: C:/Users/20djc12/ELEC374/tb_or.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_shr.v
-    Info (12023): Found entity 1: tb_shr File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_shr.v Line: 2
+    Info (12023): Found entity 1: tb_shr File: C:/Users/20djc12/ELEC374/tb_shr.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_shra.v
-    Info (12023): Found entity 1: tb_shra File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_shra.v Line: 2
+    Info (12023): Found entity 1: tb_shra File: C:/Users/20djc12/ELEC374/tb_shra.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_shl.v
-    Info (12023): Found entity 1: tb_shl File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_shl.v Line: 2
+    Info (12023): Found entity 1: tb_shl File: C:/Users/20djc12/ELEC374/tb_shl.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_ror.v
-    Info (12023): Found entity 1: tb_ror File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_ror.v Line: 2
+    Info (12023): Found entity 1: tb_ror File: C:/Users/20djc12/ELEC374/tb_ror.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_rol.v
-    Info (12023): Found entity 1: tb_rol File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_rol.v Line: 2
+    Info (12023): Found entity 1: tb_rol File: C:/Users/20djc12/ELEC374/tb_rol.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file tb_neg.v
-    Info (12023): Found entity 1: tb_neg File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_neg.v Line: 3
+    Info (12023): Found entity 1: tb_neg File: C:/Users/20djc12/ELEC374/tb_neg.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file tb_not.v
-    Info (12023): Found entity 1: tb_not File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v Line: 2
+    Info (12023): Found entity 1: tb_not File: C:/Users/20djc12/ELEC374/tb_not.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file ram_512x32.v
+    Info (12023): Found entity 1: ram_512x32 File: C:/Users/20djc12/ELEC374/ram_512x32.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file select_encode_logic.v
+    Info (12023): Found entity 1: select_encode_logic File: C:/Users/20djc12/ELEC374/select_encode_logic.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file encoder_32to5.v
+    Info (12023): Found entity 1: encoder_32to5 File: C:/Users/20djc12/ELEC374/encoder_32to5.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file register_r0.v
+    Info (12023): Found entity 1: register_r0 File: C:/Users/20djc12/ELEC374/register_r0.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file con_ff_logic.v
+    Info (12023): Found entity 1: con_ff_logic File: C:/Users/20djc12/ELEC374/con_ff_logic.v Line: 3
 Info (12127): Elaborating entity "DataPath" for the top level hierarchy
-Info (12128): Elaborating entity "register" for hierarchy "register:R0" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v Line: 37
-Info (12128): Elaborating entity "MDR" for hierarchy "MDR:mdr_unit" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v Line: 60
-Info (12128): Elaborating entity "alu" for hierarchy "alu:alu_unit" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v Line: 74
-Info (12128): Elaborating entity "add_sub32" for hierarchy "alu:alu_unit|add_sub32:add_sub_unit" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 159
-Info (12128): Elaborating entity "ripple_adder32" for hierarchy "alu:alu_unit|add_sub32:add_sub_unit|ripple_adder32:add" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 36
-Warning (10034): Output port "cout" at ALU.v(17) has no driver File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 17
-Info (12128): Elaborating entity "full_adder" for hierarchy "alu:alu_unit|add_sub32:add_sub_unit|ripple_adder32:add|full_adder:fa_chain[0].fa" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 23
-Info (12128): Elaborating entity "booth_bit_pair_mul32" for hierarchy "alu:alu_unit|booth_bit_pair_mul32:mul_unit" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 162
-Warning (10199): Verilog HDL Case Statement warning at ALU.v(56): case item expression never matches the case expression File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 56
-Warning (10199): Verilog HDL Case Statement warning at ALU.v(57): case item expression never matches the case expression File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 57
-Warning (10199): Verilog HDL Case Statement warning at ALU.v(58): case item expression never matches the case expression File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 58
-Warning (10199): Verilog HDL Case Statement warning at ALU.v(60): case item expression never matches the case expression File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 60
-Info (12128): Elaborating entity "div32" for hierarchy "alu:alu_unit|div32:div_unit" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 163
-Warning (10240): Verilog HDL Always Construct warning at ALU.v(90): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v Line: 90
-Info (12128): Elaborating entity "register" for hierarchy "register:Z" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v Line: 76
-Info (12128): Elaborating entity "bus" for hierarchy "bus:main_bus" File: C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v Line: 84
+Info (12128): Elaborating entity "register" for hierarchy "register:InPortReg" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 55
+Info (12128): Elaborating entity "con_ff_logic" for hierarchy "con_ff_logic:con_unit" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 71
+Info (12128): Elaborating entity "select_encode_logic" for hierarchy "select_encode_logic:se_logic" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 80
+Info (12128): Elaborating entity "encoder_32to5" for hierarchy "encoder_32to5:bus_encoder" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 87
+Info (12128): Elaborating entity "register_r0" for hierarchy "register_r0:R0" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 90
+Info (12128): Elaborating entity "ram_512x32" for hierarchy "ram_512x32:main_memory" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 118
+Info (12128): Elaborating entity "MDR" for hierarchy "MDR:mdr_unit" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 123
+Info (12128): Elaborating entity "alu" for hierarchy "alu:alu_unit" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 133
+Info (12128): Elaborating entity "add_sub32" for hierarchy "alu:alu_unit|add_sub32:add_sub_unit" File: C:/Users/20djc12/ELEC374/ALU.v Line: 159
+Info (12128): Elaborating entity "ripple_adder32" for hierarchy "alu:alu_unit|add_sub32:add_sub_unit|ripple_adder32:add" File: C:/Users/20djc12/ELEC374/ALU.v Line: 36
+Warning (10034): Output port "cout" at ALU.v(17) has no driver File: C:/Users/20djc12/ELEC374/ALU.v Line: 17
+Info (12128): Elaborating entity "full_adder" for hierarchy "alu:alu_unit|add_sub32:add_sub_unit|ripple_adder32:add|full_adder:fa_chain[0].fa" File: C:/Users/20djc12/ELEC374/ALU.v Line: 23
+Info (12128): Elaborating entity "booth_bit_pair_mul32" for hierarchy "alu:alu_unit|booth_bit_pair_mul32:mul_unit" File: C:/Users/20djc12/ELEC374/ALU.v Line: 162
+Warning (10199): Verilog HDL Case Statement warning at ALU.v(56): case item expression never matches the case expression File: C:/Users/20djc12/ELEC374/ALU.v Line: 56
+Warning (10199): Verilog HDL Case Statement warning at ALU.v(57): case item expression never matches the case expression File: C:/Users/20djc12/ELEC374/ALU.v Line: 57
+Warning (10199): Verilog HDL Case Statement warning at ALU.v(58): case item expression never matches the case expression File: C:/Users/20djc12/ELEC374/ALU.v Line: 58
+Warning (10199): Verilog HDL Case Statement warning at ALU.v(60): case item expression never matches the case expression File: C:/Users/20djc12/ELEC374/ALU.v Line: 60
+Info (12128): Elaborating entity "div32" for hierarchy "alu:alu_unit|div32:div_unit" File: C:/Users/20djc12/ELEC374/ALU.v Line: 163
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(90): inferring latch(es) for variable "i", which holds its previous value in one or more paths through the always construct File: C:/Users/20djc12/ELEC374/ALU.v Line: 90
+Info (12128): Elaborating entity "register" for hierarchy "register:Z" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 134
+Info (12128): Elaborating entity "bus" for hierarchy "bus:main_bus" File: C:/Users/20djc12/ELEC374/DataPath.v Line: 146
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4802 megabytes
-    Info: Processing ended: Tue Mar 03 11:20:48 2026
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:12
+    Info: Peak virtual memory: 4794 megabytes
+    Info: Processing ended: Sun Mar 15 17:42:40 2026
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:05
 
 
