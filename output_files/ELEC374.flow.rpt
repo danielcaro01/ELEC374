@@ -1,6 +1,6 @@
 Flow report for ELEC374
-Tue Mar 24 00:27:04 2026
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Tue Mar 24 10:19:17 2026
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
 ---------------------
@@ -37,24 +37,24 @@ refer to the applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------+
-; Flow Summary                                                              ;
-+-----------------------------+---------------------------------------------+
-; Flow Status                 ; Successful - Tue Mar 24 00:27:04 2026       ;
-; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name               ; ELEC374                                     ;
-; Top-level Entity Name       ; DataPath                                    ;
-; Family                      ; Cyclone V                                   ;
-; Device                      ; 5CEBA4F23C7                                 ;
-; Timing Models               ; Final                                       ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++-----------------------------+-------------------------------------------------+
+; Flow Status                 ; Successful - Tue Mar 24 10:19:17 2026           ;
+; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name               ; ELEC374                                         ;
+; Top-level Entity Name       ; DataPath                                        ;
+; Family                      ; Cyclone V                                       ;
+; Device                      ; 5CEBA4F23C7                                     ;
+; Timing Models               ; Final                                           ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                       ;
+; Total registers             ; N/A until Partition Merge                       ;
+; Total pins                  ; N/A until Partition Merge                       ;
+; Total virtual pins          ; N/A until Partition Merge                       ;
+; Total block memory bits     ; N/A until Partition Merge                       ;
+; Total PLLs                  ; N/A until Partition Merge                       ;
+; Total DLLs                  ; N/A until Partition Merge                       ;
++-----------------------------+-------------------------------------------------+
 
 
 +-----------------------------------------+
@@ -62,7 +62,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/24/2026 00:26:55 ;
+; Start date & time ; 03/24/2026 10:19:12 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ELEC374             ;
 +-------------------+---------------------+
@@ -73,53 +73,74 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 198112231956489.177432641402000        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 198915912105250.177436195221740        ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_add         ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_ldi         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_neg         ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_st          ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_mul         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_not         ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_io          ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_rol         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_div         ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_jump        ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_ror         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_or          ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_sub         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_and         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_shra        ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_ld          ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_branch      ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_shr         ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_mfhi_mflo   ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_shl         ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_ld                                  ; --            ; --          ; eda_simulation ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_alu_imm     ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_io                                  ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --             ;
 ; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_FILE                  ; tb_add.v                               ; --            ; --          ; tb_add         ;
+; EDA_TEST_BENCH_FILE                  ; tb_ldi.v                               ; --            ; --          ; tb_ldi         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_neg.v                               ; --            ; --          ; tb_neg         ;
+; EDA_TEST_BENCH_FILE                  ; tb_st.v                                ; --            ; --          ; tb_st          ;
 ; EDA_TEST_BENCH_FILE                  ; tb_mul.v                               ; --            ; --          ; tb_mul         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_not.v                               ; --            ; --          ; tb_not         ;
+; EDA_TEST_BENCH_FILE                  ; tb_io.v                                ; --            ; --          ; tb_io          ;
 ; EDA_TEST_BENCH_FILE                  ; tb_rol.v                               ; --            ; --          ; tb_rol         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_div.v                               ; --            ; --          ; tb_div         ;
+; EDA_TEST_BENCH_FILE                  ; tb_jump.v                              ; --            ; --          ; tb_jump        ;
 ; EDA_TEST_BENCH_FILE                  ; tb_ror.v                               ; --            ; --          ; tb_ror         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_or.v                                ; --            ; --          ; tb_or          ;
 ; EDA_TEST_BENCH_FILE                  ; tb_sub.v                               ; --            ; --          ; tb_sub         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_and.v                               ; --            ; --          ; tb_and         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_shra.v                              ; --            ; --          ; tb_shra        ;
 ; EDA_TEST_BENCH_FILE                  ; tb_ld.v                                ; --            ; --          ; tb_ld          ;
+; EDA_TEST_BENCH_FILE                  ; tb_branch.v                            ; --            ; --          ; tb_branch      ;
 ; EDA_TEST_BENCH_FILE                  ; tb_shr.v                               ; --            ; --          ; tb_shr         ;
+; EDA_TEST_BENCH_FILE                  ; tb_mfhi_mflo.v                         ; --            ; --          ; tb_mfhi_mflo   ;
 ; EDA_TEST_BENCH_FILE                  ; tb_shl.v                               ; --            ; --          ; tb_shl         ;
+; EDA_TEST_BENCH_FILE                  ; tb_alu_imm.v                           ; --            ; --          ; tb_alu_imm     ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_add                                 ; --            ; --          ; tb_add         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_ldi                                 ; --            ; --          ; tb_ldi         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_neg                                 ; --            ; --          ; tb_neg         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_st                                  ; --            ; --          ; tb_st          ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_mul                                 ; --            ; --          ; tb_mul         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_not                                 ; --            ; --          ; tb_not         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_io                                  ; --            ; --          ; tb_io          ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_rol                                 ; --            ; --          ; tb_rol         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_div                                 ; --            ; --          ; tb_div         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_jump                                ; --            ; --          ; tb_jump        ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_ror                                 ; --            ; --          ; tb_ror         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_or                                  ; --            ; --          ; tb_or          ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_sub                                 ; --            ; --          ; tb_sub         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_and                                 ; --            ; --          ; tb_and         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_shra                                ; --            ; --          ; tb_shra        ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_ld                                  ; --            ; --          ; tb_ld          ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_branch                              ; --            ; --          ; tb_branch      ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_shr                                 ; --            ; --          ; tb_shr         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_mfhi_mflo                           ; --            ; --          ; tb_mfhi_mflo   ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_shl                                 ; --            ; --          ; tb_shl         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_alu_imm                             ; --            ; --          ; tb_alu_imm     ;
 ; EDA_TEST_BENCH_NAME                  ; tb_and                                 ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_NAME                  ; tb_or                                  ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_NAME                  ; tb_add                                 ; --            ; --          ; eda_simulation ;
@@ -134,20 +155,34 @@ refer to the applicable agreement for further details.
 ; EDA_TEST_BENCH_NAME                  ; tb_neg                                 ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_NAME                  ; tb_not                                 ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_NAME                  ; tb_ld                                  ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_ldi                                 ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_st                                  ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_alu_imm                             ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_branch                              ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_jump                                ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_mfhi_mflo                           ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_io                                  ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_add         ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_ldi         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_neg         ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_st          ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_mul         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_not         ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_io          ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_rol         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_div         ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_jump        ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_ror         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_or          ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_sub         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_and         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_shra        ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_ld          ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_branch      ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_shr         ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_mfhi_mflo   ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_shl         ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_alu_imm     ;
 ; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --          ; eda_simulation ;
 ; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --          ; --             ;
 ; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --          ; --             ;
@@ -166,8 +201,8 @@ refer to the applicable agreement for further details.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:10     ; 1.0                     ; 4798 MB             ; 00:00:19                           ;
-; Total                  ; 00:00:10     ; --                      ; --                  ; 00:00:19                           ;
+; Analysis & Elaboration ; 00:00:05     ; 1.0                     ; 4810 MB             ; 00:00:12                           ;
+; Total                  ; 00:00:05     ; --                      ; --                  ; 00:00:12                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -176,7 +211,7 @@ refer to the applicable agreement for further details.
 +------------------------+------------------+------------+------------+----------------+
 ; Module Name            ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +------------------------+------------------+------------+------------+----------------+
-; Analysis & Elaboration ; DanielsPC        ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Elaboration ; BMH-214-09       ; Windows 10 ; 10.0       ; x86_64         ;
 +------------------------+------------------+------------+------------+----------------+
 
 

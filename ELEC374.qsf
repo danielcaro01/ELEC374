@@ -41,7 +41,7 @@ set_global_assignment -name DEVICE 5CEBA4F23C7
 set_global_assignment -name TOP_LEVEL_ENTITY DataPath
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:57:37  FEBRUARY 03, 2026"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Standard Edition"
 set_global_assignment -name VERILOG_FILE register.v
 set_global_assignment -name VERILOG_FILE DataPath.v
 set_global_assignment -name VERILOG_FILE Bus.v
@@ -71,7 +71,7 @@ set_global_assignment -name VERILOG_FILE tb_not.v
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_ld -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_io -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME tb_and -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_and
 set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_and
@@ -133,6 +133,46 @@ set_global_assignment -name VERILOG_FILE encoder_32to5.v
 set_global_assignment -name VERILOG_FILE register_r0.v
 set_global_assignment -name VERILOG_FILE con_ff_logic.v
 set_global_assignment -name VERILOG_FILE tb_ld.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_ld -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_ld
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_ld
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_ld -section_id tb_ld
+set_global_assignment -name VERILOG_FILE tb_ldi.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_ldi -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_ldi
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_ldi
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_ldi -section_id tb_ldi
+set_global_assignment -name VERILOG_FILE tb_st.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_st -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_st
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_st
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_st -section_id tb_st
+set_global_assignment -name VERILOG_FILE tb_alu_imm.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_alu_imm -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_alu_imm
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_alu_imm
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_alu_imm -section_id tb_alu_imm
+set_global_assignment -name VERILOG_FILE tb_branch.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_branch -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_branch
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_branch
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_branch -section_id tb_branch
+set_global_assignment -name VERILOG_FILE tb_jump.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_jump -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_jump
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_jump
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_jump -section_id tb_jump
+set_global_assignment -name VERILOG_FILE tb_mfhi_mflo.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_mfhi_mflo -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_mfhi_mflo
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_mfhi_mflo
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_mfhi_mflo -section_id tb_mfhi_mflo
+set_global_assignment -name VERILOG_FILE tb_io.v
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_io -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_io
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_io
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_io -section_id tb_io
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_and.v -section_id tb_and
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_or.v -section_id tb_or
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_add.v -section_id tb_add
@@ -146,9 +186,11 @@ set_global_assignment -name EDA_TEST_BENCH_FILE tb_ror.v -section_id tb_ror
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_rol.v -section_id tb_rol
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_neg.v -section_id tb_neg
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_not.v -section_id tb_not
-set_global_assignment -name EDA_TEST_BENCH_NAME tb_ld -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_ld
-set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id tb_ld
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_ld -section_id tb_ld
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_ld.v -section_id tb_ld
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_ldi.v -section_id tb_ldi
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_st.v -section_id tb_st
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_alu_imm.v -section_id tb_alu_imm
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_branch.v -section_id tb_branch
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_jump.v -section_id tb_jump
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_mfhi_mflo.v -section_id tb_mfhi_mflo
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_io.v -section_id tb_io

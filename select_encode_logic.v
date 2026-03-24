@@ -27,6 +27,6 @@ module select_encode_logic (
     assign R_out = (Rout | BAout) ? dec_out : 16'b0;
 
     // 5. Sign extend the 19-bit constant C (IR[18:0]) to 32 bits
-    assign C_sign_ext = { {13{IR[2]}}, IR[18:0] };
+    assign C_sign_ext = { {13{IR[ 18 ]}}, IR[ 18:0 ] };
 
 endmodule
