@@ -1,86 +1,83 @@
 `timescale 1ns/10ps
-
-module DataPath (
-    input clk, clr,
+module DataPath ( 
+    input clk, clr, 
     
     // Phase 1 Control Signals
-    input PCout, Zhighout, Zlowout, MDRout, MARin, Zin, PCin, MDRin, IRin, Yin, IncPC, Read, Write,
+    input PCout, Zhighout, Zlowout, MDRout, MARin, Zin, PCin, MDRin, IRin, Yin, IncPC, Read, Write, 
     
-    // Phase 2 Encode & Branch Signals
-    input Gra, Grb, Grc, Rin, Rout, BAout, Cout, CONin,
-    output CON,
+    // Phase 2 Control Signals
+    input Gra, Grb, Grc, Rin, Rout, BAout, Cout, CONin, 
+    output CON, 
     
-    // HI/LO and I/O Signals
-    input HIin, LOin, HIout, LOout, InPortout, OutPortin,
-    input [31:0] InPort_data_in,
-    output [31:0] OutPort_data_out,
+    // Branch, HI/LO, and I/O Signals
+    input HIin, LOin, HIout, LOout, InPortout, OutPortin, 
+    input [ 31:0 ] InPort_data_in, 
+    output [ 31:0 ] OutPort_data_out, 
     
-    // ALU Control Signals
-    input AND_op, OR_op, ADD_op, SUB_op, MUL_op, DIV_op, SHR_op, SHRA_op, SHL_op, ROR_op, ROL_op, NEG_op, NOT_op
+    // ALU Operation Signals
+    input AND_op, OR_op, ADD_op, SUB_op, MUL_op, DIV_op, SHR_op, SHRA_op, SHL_op, ROR_op, ROL_op, NEG_op, NOT_op 
 );
 
     // --------------------------------------------------------
-    // INTERNAL WIRES
+    // INTERNAL WIRES & BUS CONNECTIONS
     // --------------------------------------------------------
+    wire [ 31:0 ] BusMuxOut;
     
-    wire [31:0] BusMuxOut;
-    wire [63:0] Z_data_in;
-    wire [4:0]  bus_sel;
-    wire [31:0] Mdatain;     // Data coming from RAM to MDR
+    // Wires from registers to the Bus Multiplexer
+    wire [ 31:0 ] busMuxIn_R0, busMuxIn_R1, busMuxIn_R2, busMuxIn_R3, busMuxIn_R4, busMuxIn_R5, busMuxIn_R6, busMuxIn_R7;
+    wire [ 31:0 ] busMuxIn_R8, busMuxIn_R9, busMuxIn_R10, busMuxIn_R11, busMuxIn_R12, busMuxIn_R13, busMuxIn_R14, busMuxIn_R15;
+    wire [ 31:0 ] busMuxIn_HI, busMuxIn_LO, busMuxIn_Zhigh, busMuxIn_Zlow, busMuxIn_PC, busMuxIn_MDR, busMuxIn_InPort;
     
-    // Phase 2 Select & Encode Wires (Fixes Error 3: Out-of-bounds indexing)
-    wire [15:0] R_in;
-    wire [15:0] R_out;
-    wire [31:0] C_sign_ext;
+    // Other critical internal pathways
+    wire [ 31:0 ] IR_out, Y_out, MAR_out, RAM_data_out, C_sign_ext;
+    wire [ 63:0 ] Z_next;
     
-    // Component to Bus Wires
-    wire [31:0] busMuxIn_R0, busMuxIn_R1, busMuxIn_R2, busMuxIn_R3, 
-                busMuxIn_R4, busMuxIn_R5, busMuxIn_R6, busMuxIn_R7, 
-                busMuxIn_R8, busMuxIn_R9, busMuxIn_R10, busMuxIn_R11, 
-                busMuxIn_R12, busMuxIn_R13, busMuxIn_R14, busMuxIn_R15;
-                
-    wire [31:0] busMuxIn_HI, busMuxIn_LO, busMuxIn_Zhigh, busMuxIn_Zlow;
-    wire [31:0] busMuxIn_PC, busMuxIn_MDR, busMuxIn_InPort;
-    wire [31:0] busMuxIn_Y, busMuxIn_IR, busMuxIn_MAR;
+    // Select and Encode Wires (The FIX for your empty Y_reg waveform!)
+    wire [ 15:0 ] R_in, R_out;
+    wire [ 4:0 ] BusMuxSel;
 
     // --------------------------------------------------------
-    // CONTROL LOGIC INSTANTIATIONS
+    // PHASE 2: SELECT & ENCODE LOGIC
     // --------------------------------------------------------
-
-    // Select and Encode Logic
-    select_encode_logic encode_logic_inst (
-        .IR(busMuxIn_IR),
+    // Extracts Ra, Rb, Rc from the IR and decodes which register should read/write
+    select_encode_logic select_encode_inst (
+        .IR(IR_out), 
         .Gra(Gra), .Grb(Grb), .Grc(Grc), 
         .Rin(Rin), .Rout(Rout), .BAout(BAout), 
-        .R_in(R_in),
-        .R_out(R_out),
+        .R_in(R_in), 
+        .R_out(R_out), 
         .C_sign_ext(C_sign_ext)
     );
 
-    // Condition Flip-Flop Logic (For Branching)
-    con_ff_logic con_ff_inst (
-        .clk(clk),
-        .CONin(CONin),
-        .IR_C2(busMuxIn_IR[20:19]), 
-        .BusMuxOut(BusMuxOut),      
-        .CON(CON)                   
+    // Converts the decoded R_out signals into a 5-bit select signal for the Bus
+    encoder_32to5 encoder_inst (
+        .R_out(R_out), 
+        .HIout(HIout), .LOout(LOout), .Zhighout(Zhighout), .Zlowout(Zlowout), 
+        .PCout(PCout), .MDRout(MDRout), .InPortout(InPortout), .Cout(Cout), 
+        .sel(BusMuxSel)
     );
 
     // --------------------------------------------------------
-    // GENERAL PURPOSE REGISTERS (0 to 15)
+    // MAIN SYSTEM BUS (32:1 Multiplexer)
     // --------------------------------------------------------
-
-    // Special Phase 2 Register 0
-    register_r0 R0 (
-        .busMuxIn(busMuxIn_R0), 
-        .busMuxOut(BusMuxOut), 
-        .clr(clr), 
-        .clock(clk), 
-        .Rin(R_in[ 0 ]),     // <--- Now correctly slicing bit 0
-        .BAout(BAout)
+    bus bus_inst (
+        .BusMuxOut(BusMuxOut), 
+        .sel(BusMuxSel), 
+        .R0in(busMuxIn_R0), .R1in(busMuxIn_R1), .R2in(busMuxIn_R2), .R3in(busMuxIn_R3), 
+        .R4in(busMuxIn_R4), .R5in(busMuxIn_R5), .R6in(busMuxIn_R6), .R7in(busMuxIn_R7), 
+        .R8in(busMuxIn_R8), .R9in(busMuxIn_R9), .R10in(busMuxIn_R10), .R11in(busMuxIn_R11), 
+        .R12in(busMuxIn_R12), .R13in(busMuxIn_R13), .R14in(busMuxIn_R14), .R15in(busMuxIn_R15), 
+        .HIin(busMuxIn_HI), .LOin(busMuxIn_LO), .Zhighin(busMuxIn_Zhigh), .Zlowin(busMuxIn_Zlow), 
+        .PCin(busMuxIn_PC), .MDRin(busMuxIn_MDR), .InPort(busMuxIn_InPort), .C_sign_extin(C_sign_ext)
     );
 
-    // Standard Registers
+    // --------------------------------------------------------
+    // GENERAL PURPOSE REGISTERS (R0 - R15)
+    // --------------------------------------------------------
+    // Register 0 uses the special register_r0 module to support BAout gating [3]
+    register_r0 R0 (.busMuxIn(busMuxIn_R0), .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(R_in[ 0 ]), .BAout(BAout));
+    
+    // Explicitly sliced arrays guarantee no "Port Size Mismatch" warnings
     register R1  (.busMuxIn(busMuxIn_R1),  .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(R_in[ 1 ]));
     register R2  (.busMuxIn(busMuxIn_R2),  .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(R_in[ 2 ]));
     register R3  (.busMuxIn(busMuxIn_R3),  .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(R_in[ 3 ]));
@@ -98,32 +95,26 @@ module DataPath (
     register R15 (.busMuxIn(busMuxIn_R15), .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(R_in[ 15 ]));
 
     // --------------------------------------------------------
-    // DEDICATED REGISTERS & DATAPATH COMPONENTS
+    // SYSTEM REGISTERS
     // --------------------------------------------------------
-
-    register PC_reg  (.busMuxIn(busMuxIn_PC),  .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(PCin));
-    register Y_reg   (.busMuxIn(busMuxIn_Y),   .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(Yin));
-    register IR_reg  (.busMuxIn(busMuxIn_IR),  .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(IRin));
-    register MAR_reg (.busMuxIn(busMuxIn_MAR), .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(MARin));
+    register PC  (.busMuxIn(busMuxIn_PC), .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(PCin));
+    register IR  (.busMuxIn(IR_out),      .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(IRin));
+    register Y   (.busMuxIn(Y_out),       .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(Yin));
+    register MAR (.busMuxIn(MAR_out),     .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(MARin));
+    register HI  (.busMuxIn(busMuxIn_HI), .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(HIin));
+    register LO  (.busMuxIn(busMuxIn_LO), .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(LOin));
     
-    register HI_reg  (.busMuxIn(busMuxIn_HI),  .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(HIin));
-    register LO_reg  (.busMuxIn(busMuxIn_LO),  .busMuxOut(BusMuxOut), .clr(clr), .clock(clk), .Rin(LOin));
-    
-    // Z Register Split (64-bits split into 2 32-bit segments)
-    register Zhigh_reg (.busMuxIn(busMuxIn_Zhigh), .busMuxOut(Z_data_in[63:32]), .clr(clr), .clock(clk), .Rin(Zin));
-    register Zlow_reg  (.busMuxIn(busMuxIn_Zlow),  .busMuxOut(Z_data_in[31:0]),  .clr(clr), .clock(clk), .Rin(Zin));
-
-    // Input/Output Ports
-    register InPort_reg  (.busMuxIn(busMuxIn_InPort), .busMuxOut(InPort_data_in), .clr(clr), .clock(clk), .Rin(1'b1));
-    register OutPort_reg (.busMuxIn(OutPort_data_out),.busMuxOut(BusMuxOut),      .clr(clr), .clock(clk), .Rin(OutPortin));
+    // Z Register split into high and low components to accept the 64-bit ALU output [4]
+    register Z_high (.busMuxIn(busMuxIn_Zhigh), .busMuxOut(Z_next[ 63:32 ]), .clr(clr), .clock(clk), .Rin(Zin));
+    register Z_low  (.busMuxIn(busMuxIn_Zlow),  .busMuxOut(Z_next[ 31:0 ]),  .clr(clr), .clock(clk), .Rin(Zin));
 
     // --------------------------------------------------------
-    // MEMORY SUBSYSTEM
+    // PHASE 2: MEMORY SUBSYSTEM
     // --------------------------------------------------------
-    
-    MDR MDR_reg (
+    // The MDR contains a multiplexer to choose between Bus Data or RAM Data [5, 6]
+    MDR mdr_inst (
         .MDRout(busMuxIn_MDR), 
-        .Mdatain(Mdatain), 
+        .Mdatain(RAM_data_out), 
         .busMuxOut(BusMuxOut), 
         .Read(Read), 
         .clr(clr), 
@@ -131,53 +122,42 @@ module DataPath (
         .MDRin(MDRin)
     );
 
+    // Main 512x32 Random Access Memory unit
     ram_512x32 ram_inst (
-        .clk(clk),
-        .Read(Read),
-        .Write(Write),
-        .Address(busMuxIn_MAR[8:0]),
-        .DataIn(busMuxIn_MDR),    // Writes MDR value into RAM
-        .DataOut(Mdatain)         // RAM outputs to Mdatain wire
+        .clk(clk), 
+        .Read(Read), 
+        .Write(Write), 
+        .Address(MAR_out[ 8:0 ]), 
+        .DataIn(busMuxIn_MDR), 
+        .DataOut(RAM_data_out)
     );
 
     // --------------------------------------------------------
-    // ALU & BUS INSTANTIATIONS
+    // PHASE 2: I/O PORTS & CON FF
     // --------------------------------------------------------
+    register InPort  (.busMuxIn(busMuxIn_InPort),  .busMuxOut(InPort_data_in), .clr(clr), .clock(clk), .Rin(1'b1)); 
+    register OutPort (.busMuxIn(OutPort_data_out), .busMuxOut(BusMuxOut),      .clr(clr), .clock(clk), .Rin(OutPortin));
 
+    con_ff_logic con_ff_inst (
+        .clk(clk), 
+        .CONin(CONin), 
+        .IR_C2(IR_out[ 20:19 ]),  // Checks IR bits 20 and 19 for branch conditions [7]
+        .BusMuxOut(BusMuxOut), 
+        .CON(CON)
+    );
+
+    // --------------------------------------------------------
+    // ARITHMETIC LOGIC UNIT
+    // --------------------------------------------------------
     alu alu_inst (
-        .Y(busMuxIn_Y),         
-        .Bus(BusMuxOut),        
-        .PC(busMuxIn_PC),       
-        
-        .AND_op(AND_op), .OR_op(OR_op), .NOT_op(NOT_op), .NEG_op(NEG_op),
-        .ADD_op(ADD_op), .SUB_op(SUB_op), .MUL_op(MUL_op), .DIV_op(DIV_op),
-        .SHR_op(SHR_op), .SHRA_op(SHRA_op), .SHL_op(SHL_op),
-        .ROR_op(ROR_op), .ROL_op(ROL_op),
-        
-        .IncPC_op(IncPC),
-        .Z_next(Z_data_in)      // 64-bit result feeds back to Zhigh and Zlow registers
-    );
-
-    encoder_32to5 bus_encoder (
-        .R_out(R_out),
-        .HIout(HIout), .LOout(LOout), .Zhighout(Zhighout), .Zlowout(Zlowout),
-        .PCout(PCout), .MDRout(MDRout), .InPortout(InPortout), .Cout(Cout),
-        .sel(bus_sel)
-    );
-
-    bus bus_inst (
-        .BusMuxOut(BusMuxOut),
-        .sel(bus_sel),
-        
-        .R0in(busMuxIn_R0), .R1in(busMuxIn_R1), .R2in(busMuxIn_R2), .R3in(busMuxIn_R3), 
-        .R4in(busMuxIn_R4), .R5in(busMuxIn_R5), .R6in(busMuxIn_R6), .R7in(busMuxIn_R7), 
-        .R8in(busMuxIn_R8), .R9in(busMuxIn_R9), .R10in(busMuxIn_R10), .R11in(busMuxIn_R11), 
-        .R12in(busMuxIn_R12), .R13in(busMuxIn_R13), .R14in(busMuxIn_R14), .R15in(busMuxIn_R15), 
-        
-        .HIin(busMuxIn_HI), .LOin(busMuxIn_LO), 
-        .Zhighin(busMuxIn_Zhigh), .Zlowin(busMuxIn_Zlow), 
-        .PCin(busMuxIn_PC), .MDRin(busMuxIn_MDR), 
-        .InPort(busMuxIn_InPort), .C_sign_extin(C_sign_ext)
+        .Y(Y_out), 
+        .Bus(BusMuxOut), 
+        .PC(busMuxIn_PC), 
+        .AND_op(AND_op), .OR_op(OR_op), .NOT_op(NOT_op), .NEG_op(NEG_op), 
+        .ADD_op(ADD_op), .SUB_op(SUB_op), .MUL_op(MUL_op), .DIV_op(DIV_op), 
+        .SHR_op(SHR_op), .SHRA_op(SHRA_op), .SHL_op(SHL_op), 
+        .ROR_op(ROR_op), .ROL_op(ROL_op), .IncPC_op(IncPC), 
+        .Z_next(Z_next)
     );
 
 endmodule

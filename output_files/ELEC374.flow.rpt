@@ -1,6 +1,6 @@
 Flow report for ELEC374
-Mon Mar 23 23:08:57 2026
-Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Lite Edition
+Tue Mar 24 00:27:04 2026
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
 ---------------------
@@ -21,9 +21,9 @@ Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2019  Intel Corporation. All rights reserved.
+Copyright (C) 2018  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and any partner logic 
+and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
@@ -33,16 +33,15 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.
+refer to the applicable agreement for further details.
 
 
 
 +---------------------------------------------------------------------------+
 ; Flow Summary                                                              ;
 +-----------------------------+---------------------------------------------+
-; Flow Status                 ; Successful - Mon Mar 23 23:08:57 2026       ;
-; Quartus Prime Version       ; 18.1.1 Build 646 04/11/2019 SJ Lite Edition ;
+; Flow Status                 ; Successful - Tue Mar 24 00:27:04 2026       ;
+; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name               ; ELEC374                                     ;
 ; Top-level Entity Name       ; DataPath                                    ;
 ; Family                      ; Cyclone V                                   ;
@@ -63,7 +62,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/23/2026 23:08:49 ;
+; Start date & time ; 03/24/2026 00:26:55 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ELEC374             ;
 +-------------------+---------------------+
@@ -74,7 +73,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 38917505025.177432172926824            ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 198112231956489.177432641402000        ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_add         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_neg         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_mul         ;
@@ -167,8 +166,8 @@ https://fpgasoftware.intel.com/eula.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:12     ; 1.0                     ; 4791 MB             ; 00:00:18                           ;
-; Total                  ; 00:00:12     ; --                      ; --                  ; 00:00:18                           ;
+; Analysis & Elaboration ; 00:00:10     ; 1.0                     ; 4798 MB             ; 00:00:19                           ;
+; Total                  ; 00:00:10     ; --                      ; --                  ; 00:00:19                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -177,7 +176,7 @@ https://fpgasoftware.intel.com/eula.
 +------------------------+------------------+------------+------------+----------------+
 ; Module Name            ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +------------------------+------------------+------------+------------+----------------+
-; Analysis & Elaboration ; DanielsLaptop    ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Elaboration ; DanielsPC        ; Windows 10 ; 10.0       ; x86_64         ;
 +------------------------+------------------+------------+------------+----------------+
 
 
