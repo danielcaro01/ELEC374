@@ -1,0 +1,120 @@
+`timescale 1ns/10ps
+module tb_ld;
+
+    // Phase 2 Control Signals
+    reg clk, clr;
+    reg PCout, Zlowout, MDRout, MARin, Zin, PCin, MDRin, IRin, Yin, IncPC, Read, ADD;
+    reg Gra, Grb, Grc, Rin, Rout, BAout, Cout;
+
+    // Instantiate your Phase 2 DataPath
+    DataPath DUT (
+        .clk(clk), .clr(clr), 
+        .PCout(PCout), .Zlowout(Zlowout), .MDRout(MDRout), .MARin(MARin), 
+        .Zin(Zin), .PCin(PCin), .MDRin(MDRin), .IRin(IRin), .Yin(Yin), 
+        .IncPC(IncPC), .Read(Read), .ADD(ADD), 
+        .Gra(Gra), .Grb(Grb), .Grc(Grc), .Rin(Rin), .Rout(Rout), .BAout(BAout), .Cout(Cout)
+    );
+
+    // --------------------------------------------------------
+    // MEMORY & REGISTER INITIALIZATION
+    // --------------------------------------------------------
+    initial begin
+        // Preload R2 with 0x57 for Case 2
+        DUT.R2.Q = 32'h0000_0057;
+
+        // Case 1 Data: Initialize RAM location 0x65 with 0x84
+        DUT.main_memory[9'h065] = 32'h0000_0084;
+
+        // Case 2 Data: Initialize RAM location 0xC9 (0x72 + 0x57) with 0x2B
+        DUT.main_memory[9'h0C9] = 32'h0000_002B;
+
+        // Load pre-encoded instructions into RAM at PC = 0 and PC = 1
+        // Instruction 1: ld R7, 0x65 (Ra=7, Rb=0, C=0x65) -> 32'h38000065
+        DUT.main_memory = 32'h38000065;
+        // Instruction 2: ld R0, 0x72(R2) (Ra=0, Rb=2, C=0x72) -> 32'h00100072
+        DUT.main_memory[5] = 32'h00100072;
+    end
+
+    // Clock and Reset Generation
+    initial begin
+        clk = 0;
+        clr = 1; // Hold clear high to reset PC to 0
+        #15 clr = 0;
+        forever #10 clk = ~clk;
+    end
+
+    // macOS & Windows Compatible VCD Dump Block
+    initial begin
+        $dumpfile("tb_ld.vcd"); 
+        $dumpvars;
+    end
+
+    // Mandatory simulation timeout block
+    initial begin
+        #127500;
+        $display("Simulation complete.");
+        $finish;
+    end
+
+    // FSM States for executing two instructions sequentially 
+    parameter Default = 5'd0, 
+              T0_1=5'd1, T1_1=5'd2, T2_1=5'd3, T3_1=5'd4, T4_1=5'd5, T5_1=5'd6, T6_1=5'd7, T7_1=5'd8,
+              T0_2=5'd9, T1_2=5'd10, T2_2=5'd11, T3_2=5'd12, T4_2=5'd13, T5_2=5'd14, T6_2=5'd15, T7_2=5'd16;
+    reg [4:0] Present_state = Default;
+
+    // FSM State Transitions
+    always @(posedge clk) begin
+        if (clr) Present_state <= Default;
+        else begin
+            case (Present_state)
+                Default: Present_state <= T0_1;
+                T0_1: Present_state <= T1_1;
+                T1_1: Present_state <= T2_1;
+                T2_1: Present_state <= T3_1;
+                T3_1: Present_state <= T4_1;
+                T4_1: Present_state <= T5_1;
+                T5_1: Present_state <= T6_1;
+                T6_1: Present_state <= T7_1;
+                T7_1: Present_state <= T0_2; // Move to Case 2
+
+                T0_2: Present_state <= T1_2;
+                T1_2: Present_state <= T2_2;
+                T2_2: Present_state <= T3_2;
+                T3_2: Present_state <= T4_2;
+                T4_2: Present_state <= T5_2;
+                T5_2: Present_state <= T6_2;
+                T6_2: Present_state <= T7_2;
+                T7_2: Present_state <= T7_2; // End of simulation tests
+            endcase
+        end
+    end
+
+    // FSM Outputs for the "ld" control sequences
+    always @(Present_state) begin
+        PCout = 0; Zlowout = 0; MDRout = 0; MARin = 0; Zin = 0; PCin = 0; MDRin = 0; 
+        IRin = 0; Yin = 0; IncPC = 0; Read = 0; ADD = 0; 
+        Gra = 0; Grb = 0; Grc = 0; Rin = 0; Rout = 0; BAout = 0; Cout = 0;
+
+        case (Present_state)
+            // ------------- CASE 1: ld R7, 0x65 ------------- //
+            T0_1: begin PCout = 1; MARin = 1; IncPC = 1; Zin = 1; end
+            T1_1: begin Zlowout = 1; PCin = 1; Read = 1; MDRin = 1; end
+            T2_1: begin MDRout = 1; IRin = 1; end
+            T3_1: begin Grb = 1; BAout = 1; Yin = 1; end
+            T4_1: begin Cout = 1; ADD = 1; Zin = 1; end
+            T5_1: begin Zlowout = 1; MARin = 1; end
+            T6_1: begin Read = 1; MDRin = 1; end
+            T7_1: begin MDRout = 1; Gra = 1; Rin = 1; end
+
+            // ---------- CASE 2: ld R0, 0x72(R2) ---------- //
+            T0_2: begin PCout = 1; MARin = 1; IncPC = 1; Zin = 1; end
+            T1_2: begin Zlowout = 1; PCin = 1; Read = 1; MDRin = 1; end
+            T2_2: begin MDRout = 1; IRin = 1; end
+            T3_2: begin Grb = 1; BAout = 1; Yin = 1; end
+            T4_2: begin Cout = 1; ADD = 1; Zin = 1; end
+            T5_2: begin Zlowout = 1; MARin = 1; end
+            T6_2: begin Read = 1; MDRin = 1; end
+            T7_2: begin MDRout = 1; Gra = 1; Rin = 1; end
+        endcase
+    end
+endmodule

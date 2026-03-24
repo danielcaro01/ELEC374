@@ -1,6 +1,6 @@
 Flow report for ELEC374
-Sun Mar 15 17:42:40 2026
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Mon Mar 23 23:08:57 2026
+Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Lite Edition
 
 
 ---------------------
@@ -21,9 +21,9 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2018  Intel Corporation. All rights reserved.
+Copyright (C) 2019  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic 
+and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
@@ -33,28 +33,29 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details.
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
 
 
 
-+-------------------------------------------------------------------------------+
-; Flow Summary                                                                  ;
-+-----------------------------+-------------------------------------------------+
-; Flow Status                 ; Successful - Sun Mar 15 17:42:40 2026           ;
-; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
-; Revision Name               ; ELEC374                                         ;
-; Top-level Entity Name       ; DataPath                                        ;
-; Family                      ; Cyclone V                                       ;
-; Device                      ; 5CEBA4F23C7                                     ;
-; Timing Models               ; Final                                           ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                       ;
-; Total registers             ; N/A until Partition Merge                       ;
-; Total pins                  ; N/A until Partition Merge                       ;
-; Total virtual pins          ; N/A until Partition Merge                       ;
-; Total block memory bits     ; N/A until Partition Merge                       ;
-; Total PLLs                  ; N/A until Partition Merge                       ;
-; Total DLLs                  ; N/A until Partition Merge                       ;
-+-----------------------------+-------------------------------------------------+
++---------------------------------------------------------------------------+
+; Flow Summary                                                              ;
++-----------------------------+---------------------------------------------+
+; Flow Status                 ; Successful - Mon Mar 23 23:08:57 2026       ;
+; Quartus Prime Version       ; 18.1.1 Build 646 04/11/2019 SJ Lite Edition ;
+; Revision Name               ; ELEC374                                     ;
+; Top-level Entity Name       ; DataPath                                    ;
+; Family                      ; Cyclone V                                   ;
+; Device                      ; 5CEBA4F23C7                                 ;
+; Timing Models               ; Final                                       ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
+; Total registers             ; N/A until Partition Merge                   ;
+; Total pins                  ; N/A until Partition Merge                   ;
+; Total virtual pins          ; N/A until Partition Merge                   ;
+; Total block memory bits     ; N/A until Partition Merge                   ;
+; Total PLLs                  ; N/A until Partition Merge                   ;
+; Total DLLs                  ; N/A until Partition Merge                   ;
++-----------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -62,7 +63,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/15/2026 17:42:34 ;
+; Start date & time ; 03/23/2026 23:08:49 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ELEC374             ;
 +-------------------+---------------------+
@@ -73,7 +74,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 53671034207461.177361095317928         ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 38917505025.177432172926824            ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_add         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_neg         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_mul         ;
@@ -85,9 +86,10 @@ refer to the applicable agreement for further details.
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_sub         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_and         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_shra        ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_ld          ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_shr         ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_shl         ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_not                                 ; --            ; --          ; eda_simulation ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_ld                                  ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --             ;
 ; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --          ; eda_simulation ;
@@ -102,6 +104,7 @@ refer to the applicable agreement for further details.
 ; EDA_TEST_BENCH_FILE                  ; tb_sub.v                               ; --            ; --          ; tb_sub         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_and.v                               ; --            ; --          ; tb_and         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_shra.v                              ; --            ; --          ; tb_shra        ;
+; EDA_TEST_BENCH_FILE                  ; tb_ld.v                                ; --            ; --          ; tb_ld          ;
 ; EDA_TEST_BENCH_FILE                  ; tb_shr.v                               ; --            ; --          ; tb_shr         ;
 ; EDA_TEST_BENCH_FILE                  ; tb_shl.v                               ; --            ; --          ; tb_shl         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_add                                 ; --            ; --          ; tb_add         ;
@@ -115,6 +118,7 @@ refer to the applicable agreement for further details.
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_sub                                 ; --            ; --          ; tb_sub         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_and                                 ; --            ; --          ; tb_and         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_shra                                ; --            ; --          ; tb_shra        ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_ld                                  ; --            ; --          ; tb_ld          ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_shr                                 ; --            ; --          ; tb_shr         ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; tb_shl                                 ; --            ; --          ; tb_shl         ;
 ; EDA_TEST_BENCH_NAME                  ; tb_and                                 ; --            ; --          ; eda_simulation ;
@@ -130,6 +134,7 @@ refer to the applicable agreement for further details.
 ; EDA_TEST_BENCH_NAME                  ; tb_rol                                 ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_NAME                  ; tb_neg                                 ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_NAME                  ; tb_not                                 ; --            ; --          ; eda_simulation ;
+; EDA_TEST_BENCH_NAME                  ; tb_ld                                  ; --            ; --          ; eda_simulation ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_add         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_neg         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_mul         ;
@@ -141,6 +146,7 @@ refer to the applicable agreement for further details.
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_sub         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_and         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_shra        ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_ld          ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_shr         ;
 ; EDA_TEST_BENCH_RUN_SIM_FOR           ; 500 ns                                 ; --            ; --          ; tb_shl         ;
 ; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --          ; eda_simulation ;
@@ -161,8 +167,8 @@ refer to the applicable agreement for further details.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:07     ; 1.0                     ; 4794 MB             ; 00:00:05                           ;
-; Total                  ; 00:00:07     ; --                      ; --                  ; 00:00:05                           ;
+; Analysis & Elaboration ; 00:00:12     ; 1.0                     ; 4791 MB             ; 00:00:18                           ;
+; Total                  ; 00:00:12     ; --                      ; --                  ; 00:00:18                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -171,7 +177,7 @@ refer to the applicable agreement for further details.
 +------------------------+------------------+------------+------------+----------------+
 ; Module Name            ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +------------------------+------------------+------------+------------+----------------+
-; Analysis & Elaboration ; WL214-20         ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Elaboration ; DanielsLaptop    ; Windows 10 ; 10.0       ; x86_64         ;
 +------------------------+------------------+------------+------------+----------------+
 
 

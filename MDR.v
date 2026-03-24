@@ -1,25 +1,30 @@
+`timescale 1ns/10ps
+module MDR (
+    output [31:0] MDRout, 
+    input  [31:0] Mdatain, 
+    input  [31:0] busMuxOut, 
+    input  Read, clr, clock, MDRin
+); 
+    reg [31:0] mux_out;
 
-
-
-// Recommended MDR.v
-module MDR (output [31:0] MDRout, input [31:0] Mdatain, busMuxOut, input Read, clr, clock, MDRin);
-    reg [31:0] MDRDatain; // Corrected casing to match your usage below
-    
-    // Internal register instance 
-    register MDRreg (MDRout, MDRDatain, clr, clock, MDRin);
-    
-    always @(*) // Combinational logic for the input mux [cite: 192]
-    begin
-        if(Read == 1'b1) begin
-            MDRDatain = Mdatain; // Select memory input [cite: 201, 202]
-        end
-        else begin
-            MDRDatain = busMuxOut; // Select bus input [cite: 200, 202]
-        end
+    // Phase 1 Figure 4 MUX Logic:
+    // If Read = 1, grab data from RAM. Otherwise, grab data from the Bus.
+    always @(*) begin
+        if (Read)
+            mux_out = Mdatain;
+        else
+            mux_out = busMuxOut;
     end
+
+    // Standard register instantiation to hold the selected data
+    register mdr_internal_reg (
+        .busMuxIn(MDRout), 
+        .busMuxOut(mux_out), 
+        .clr(clr), 
+        .clock(clock), 
+        .Rin(MDRin)
+    );
 endmodule
-
-
 
 
 

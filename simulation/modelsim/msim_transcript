@@ -1,4 +1,4 @@
-# Reading C:/intelFPGA/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# Reading C:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
 # do ELEC374_run_msim_rtl_verilog.do
 # if {[file exists rtl_work]} {
 # 	vdel -lib rtl_work -all
@@ -7,53 +7,53 @@
 # vmap work rtl_work
 # Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
 # vmap work rtl_work 
-# Copying C:/intelFPGA/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Copying C:/intelFPGA_lite/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v}
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/register.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:24:05 on Mar 03,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main" C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/register.v 
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/register.v 
 # -- Compiling module register
 # 
 # Top level modules:
 # 	register
-# End time: 11:24:05 on Mar 03,2026, Elapsed time: 0:00:00
+# End time: 23:09:16 on Mar 23,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v}
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/DataPath.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:24:05 on Mar 03,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main" C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/DataPath.v 
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/DataPath.v 
 # -- Compiling module DataPath
 # 
 # Top level modules:
 # 	DataPath
-# End time: 11:24:05 on Mar 03,2026, Elapsed time: 0:00:00
+# End time: 23:09:16 on Mar 23,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v}
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/Bus.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:24:05 on Mar 03,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main" C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/Bus.v 
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/Bus.v 
 # -- Compiling module bus
 # 
 # Top level modules:
 # 	bus
-# End time: 11:24:05 on Mar 03,2026, Elapsed time: 0:00:00
+# End time: 23:09:16 on Mar 23,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v}
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/MDR.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:24:06 on Mar 03,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main" C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/MDR.v 
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/MDR.v 
 # -- Compiling module MDR
 # 
 # Top level modules:
 # 	MDR
-# End time: 11:24:06 on Mar 03,2026, Elapsed time: 0:00:00
+# End time: 23:09:16 on Mar 23,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v}
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/ALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:24:06 on Mar 03,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main" C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/ALU.v 
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/ALU.v 
 # -- Compiling module full_adder
 # -- Compiling module ripple_adder32
 # -- Compiling module add_sub32
@@ -63,32 +63,87 @@
 # 
 # Top level modules:
 # 	alu
-# End time: 11:24:06 on Mar 03,2026, Elapsed time: 0:00:00
+# End time: 23:09:16 on Mar 23,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# 
-# vlog -vlog01compat -work work +incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main {C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v}
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/ram_512x32.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:24:06 on Mar 03,2026
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main" C:/Users/22lhq1/Downloads/ELEC374-main/ELEC374-main/tb_not.v 
-# -- Compiling module tb_not
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/ram_512x32.v 
+# -- Compiling module ram_512x32
 # 
 # Top level modules:
-# 	tb_not
-# End time: 11:24:06 on Mar 03,2026, Elapsed time: 0:00:00
+# 	ram_512x32
+# End time: 23:09:16 on Mar 23,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/select_encode_logic.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/select_encode_logic.v 
+# -- Compiling module select_encode_logic
+# 
+# Top level modules:
+# 	select_encode_logic
+# End time: 23:09:16 on Mar 23,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/encoder_32to5.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:09:16 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/encoder_32to5.v 
+# -- Compiling module encoder_32to5
+# 
+# Top level modules:
+# 	encoder_32to5
+# End time: 23:09:17 on Mar 23,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/register_r0.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:09:17 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/register_r0.v 
+# -- Compiling module register_r0
+# 
+# Top level modules:
+# 	register_r0
+# End time: 23:09:17 on Mar 23,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/con_ff_logic.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:09:17 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/con_ff_logic.v 
+# -- Compiling module con_ff_logic
+# 
+# Top level modules:
+# 	con_ff_logic
+# End time: 23:09:17 on Mar 23,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  tb_not
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" tb_not 
-# Start time: 11:24:06 on Mar 03,2026
-# Loading work.tb_not
+# vlog -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374 {C:/Users/20djc12/ELEC374/tb_ld.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:09:17 on Mar 23,2026
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/20djc12/ELEC374" C:/Users/20djc12/ELEC374/tb_ld.v 
+# -- Compiling module tb_ld
+# 
+# Top level modules:
+# 	tb_ld
+# End time: 23:09:17 on Mar 23,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  tb_ld
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" tb_ld 
+# Start time: 23:09:17 on Mar 23,2026
+# Loading work.tb_ld
 # Loading work.DataPath
+# Loading work.select_encode_logic
+# Loading work.con_ff_logic
+# Loading work.register_r0
 # Loading work.register
 # Loading work.MDR
+# Loading work.ram_512x32
 # Loading work.alu
 # Loading work.add_sub32
 # Loading work.ripple_adder32
 # Loading work.booth_bit_pair_mul32
 # Loading work.div32
+# Loading work.encoder_32to5
 # Loading work.bus
 # Loading work.full_adder
 # 
@@ -99,10 +154,11 @@
 # .main_pane.objects.interior.cs.body.tree
 # run 500 ns
 add wave -position insertpoint  \
-sim:/tb_not/DUT/R4/Q
+sim:/tb_ld/DUT/R7/Q
 add wave -position insertpoint  \
-sim:/tb_not/DUT/R7/Q
+sim:/tb_ld/DUT/R0/Q
 restart
+# Closing VCD file "tb_ld.vcd"
 run 500ns
-# End time: 11:25:03 on Mar 03,2026, Elapsed time: 0:00:57
+# End time: 23:31:45 on Mar 23,2026, Elapsed time: 0:22:28
 # Errors: 0, Warnings: 0
