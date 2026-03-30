@@ -5,7 +5,7 @@ module encoder_32to5 (
     output reg [ 4:0 ] sel
 );
     always @(*) begin
-        // Default assignment absolutely prevents inferred latches (Fixes Warning 10240)
+        // Default assignment absolutely prevents inferred latches
         sel = 5'd0;
 
         // Priority Encoder Logic based on Phase 1 Figure 3 Mux Specifications
@@ -18,7 +18,7 @@ module encoder_32to5 (
         else if (LOout) sel = 5'd17;
         else if (HIout) sel = 5'd16;
         
-        // R_out perfectly sliced from 15 down to 1 (Fixes Error 10232)
+        // R_out perfectly sliced from 15 down to 1
         else if (R_out[ 15 ]) sel = 5'd15;
         else if (R_out[ 14 ]) sel = 5'd14;
         else if (R_out[ 13 ]) sel = 5'd13;
