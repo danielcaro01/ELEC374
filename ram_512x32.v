@@ -1,25 +1,29 @@
 `timescale 1ns/10ps
-module ram_512x32 ( 
-    input clk, 
-    input Read, 
-    input Write, 
-    input [8:0] Address,    
-    input [31:0] DataIn,    
-    output reg [31:0] DataOut 
-); 
+module ram_512x32 (
+    input clk,
+    input Read,
+    input Write,
+    input [8:0] Address,
+    input [31:0] DataIn,
+    output reg [31:0] DataOut
+);
+
     reg [31:0] memory [0:511];
 
-    // ASYNCHRONOUS READ: Data outputs instantly when Read == 1
-    always @(*) begin
-        if (Read) 
-            DataOut = memory[Address];
-        else 
-            DataOut = 32'hZ; 
+    // Synchronous Write Logic
+    always @(posedge clk) begin
+        if (Write == 1'b1) begin
+            memory[Address] <= DataIn;
+        end
     end
 
-    // SYNCHRONOUS WRITE: Data writes strictly on the clock edge
-    always @(posedge clk) begin
-        if (Write)
-            memory[Address] <= DataIn;
+    // Combinational Read Logic ensures data is instantly available to the MDR
+    always @(*) begin
+        if (Read == 1'b1) begin
+            DataOut = memory[Address];
+        end else begin
+            DataOut = 32'h00000000; 
+        end
     end
+
 endmodule

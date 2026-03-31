@@ -1,37 +1,113 @@
-// --- tb_neg.v ---
 `timescale 1ns/10ps
 module tb_neg;
-    // Needs only one setup register (R7) [cite: 48]
-    reg clk, clr, Read, MARin, PCin, MDRin, IRin, Yin, Zin, IncPC;
-    reg R0in, R1in, R2in, R3in, R4in, R5in, R6in, R7in, HIin, LOin;
+
+    reg clk, clr;
+    
+    // Phase 1 Control Signals
+    reg PCout, Zhighout, Zlowout, MDRout, MARin, Zin, PCin, MDRin, IRin, Yin, IncPC, Read, Write;
     reg AND_op, OR_op, ADD_op, SUB_op, MUL_op, DIV_op, SHR_op, SHRA_op, SHL_op, ROR_op, ROL_op, NEG_op, NOT_op;
-    reg [31:0] Mdatain; reg [4:0] BusMuxSel;
-    parameter Default=4'b0000, Reg_load1a=4'b0001, Reg_load1b=4'b0010, T0=4'b0011, T1=4'b0100, T2=4'b0101, T3=4'b0110, T4=4'b0111;
-    reg [3:0] Present_state = Default;
+    
+    // Phase 2 Control Signals
+    reg Gra, Grb, Grc, Rin, Rout, BAout, Cout, CONin;
+    wire CON; 
+    reg HIin, LOin, HIout, LOout, InPortout, OutPortin;
+    reg [ 31:0 ] InPort_data_in;
+    wire [ 31:0 ] OutPort_data_out;
 
-    DataPath DUT ( /* Instance Mapping */ );
+    // Instantiate the 45-Port DataPath
+    DataPath DUT (
+        .clk(clk), .clr(clr), 
+        .PCout(PCout), .Zhighout(Zhighout), .Zlowout(Zlowout), .MDRout(MDRout), 
+        .MARin(MARin), .Zin(Zin), .PCin(PCin), .MDRin(MDRin), .IRin(IRin), .Yin(Yin), 
+        .IncPC(IncPC), .Read(Read), .Write(Write), 
+        
+        .Gra(Gra), .Grb(Grb), .Grc(Grc), .Rin(Rin), .Rout(Rout), .BAout(BAout), .Cout(Cout),
+        .CONin(CONin), .CON(CON),
+        
+        .HIin(HIin), .LOin(LOin), .HIout(HIout), .LOout(LOout),
+        .InPortout(InPortout), .OutPortin(OutPortin),
+        .InPort_data_in(InPort_data_in), .OutPort_data_out(OutPort_data_out),
+        
+        .AND_op(AND_op), .OR_op(OR_op), .ADD_op(ADD_op), .SUB_op(SUB_op), 
+        .MUL_op(MUL_op), .DIV_op(DIV_op), .SHR_op(SHR_op), .SHRA_op(SHRA_op), 
+        .SHL_op(SHL_op), .ROR_op(ROR_op), .ROL_op(ROL_op), .NEG_op(NEG_op), .NOT_op(NOT_op)
+    );
 
-    initial begin clk=0; forever #10 clk=~clk; end
+    // --------------------------------------------------------
+    // MEMORY INITIALIZATION 
+    // --------------------------------------------------------
+    initial begin
+        // neg R4, R7
+        // I-Format: Opcode (31..27) = 01110, Ra (26..23) = 0100, Rb (22..19) = 0111, Unused = 0
+        // Binary: 0111_0010_0011_1000_0000_0000_0000_0000 -> Hex: 72380000
+        DUT.ram_inst.memory[ 9'h000 ] = 32'h72380000; 
+    end
+
+    // --------------------------------------------------------
+    // DELAYED REGISTER PRELOAD
+    // --------------------------------------------------------
+    initial begin
+        // Wait safely for the 25ns reset phase to drop
+        #35; 
+        
+        // Preload R7 with a recognizable positive value to test the 2's complement negation
+        force DUT.R7.Q = 32'h0000_0015; // 21 in decimal
+        #10; 
+        release DUT.R7.Q;
+    end
+
+    // --------------------------------------------------------
+    // CLOCK & RESET GENERATION
+    // --------------------------------------------------------
+    initial begin clk = 0; forever #10 clk = ~clk; end
+    initial begin clr = 1; #25 clr = 0; end
+
+    // --------------------------------------------------------
+    // SIMULATION DUMP & TIMEOUT
+    // --------------------------------------------------------
+    initial begin $dumpfile("tb_neg.vcd"); $dumpvars; end
+    initial begin #127500; $display("Simulation complete."); $finish; end
+
+    // --------------------------------------------------------
+    // FSM STATES
+    // --------------------------------------------------------
+    parameter Default = 5'd0, 
+              T0=5'd1, T1=5'd2, T2=5'd3, T3=5'd4, T4=5'd5;
+    reg [ 4:0 ] Present_state = Default;
+
     always @(posedge clk) begin
-        case (Present_state)
-            Default: Present_state <= Reg_load1a;   Reg_load1a: Present_state <= Reg_load1b;
-            Reg_load1b: Present_state <= T0;        T0: Present_state <= T1;
-            T1: Present_state <= T2;                T2: Present_state <= T3;
-            T3: Present_state <= T4;                T4: Present_state <= Default;
+        if (clr) Present_state <= Default;
+        else case (Present_state)
+            Default: Present_state <= T0;
+            T0: Present_state <= T1;
+            T1: Present_state <= T2;
+            T2: Present_state <= T3;
+            T3: Present_state <= T4;
+            T4: Present_state <= T4;
         endcase
     end
-    always @(*) begin
-        {clr, Read, MARin, PCin, MDRin, IRin, Yin, Zin, IncPC, R0in, R1in, R2in, R3in, R4in, R5in, R6in, R7in, HIin, LOin} = 19'b0;
-        {AND_op, OR_op, ADD_op, SUB_op, MUL_op, DIV_op, SHR_op, SHRA_op, SHL_op, ROR_op, ROL_op, NEG_op, NOT_op} = 13'b0; BusMuxSel = 5'b0;
+
+    // --------------------------------------------------------
+    // FSM OUTPUTS
+    // --------------------------------------------------------
+    always @(Present_state) begin
+        // Reset all signals to 0 to prevent inferred latches
+        PCout=0; Zhighout=0; Zlowout=0; MDRout=0; MARin=0; Zin=0; PCin=0; MDRin=0; IRin=0; Yin=0; IncPC=0; Read=0; Write=0;
+        Gra=0; Grb=0; Grc=0; Rin=0; Rout=0; BAout=0; Cout=0; CONin=0; HIin=0; LOin=0; HIout=0; LOout=0; InPortout=0; OutPortin=0;
+        AND_op=0; OR_op=0; ADD_op=0; SUB_op=0; MUL_op=0; DIV_op=0; SHR_op=0; SHRA_op=0; SHL_op=0; ROR_op=0; ROL_op=0; NEG_op=0; NOT_op=0;
+
         case (Present_state)
-            Default: clr = 1;
-            Reg_load1a: begin Mdatain=32'h05; Read=1; MDRin=1; end
-            Reg_load1b: begin BusMuxSel=5'd21; R7in=1; end
-            T0: begin BusMuxSel=5'd20; MARin=1; IncPC=1; Zin=1; end
-            T1: begin BusMuxSel=5'd19; PCin=1; Read=1; MDRin=1; Mdatain=32'h0; end
-            T2: begin BusMuxSel=5'd21; IRin=1; end
-            T3: begin BusMuxSel=5'd7; NEG_op=1; Zin=1; end // Direct bus negation
-            T4: begin BusMuxSel=5'd19; R4in=1; end
+            // ------------- neg R4, R7 ------------- //
+            T0: begin PCout = 1; MARin = 1; IncPC = 1; Zin = 1; end
+            T1: begin Zlowout = 1; PCin = 1; Read = 1; MDRin = 1; end
+            T2: begin MDRout = 1; IRin = 1; end
+            
+            // The `neg` instruction does not use the Y register. 
+            // It strictly extracts Rb onto the Bus and routes it straight through the ALU to Z.
+            T3: begin Grb = 1; Rout = 1; NEG_op = 1; Zin = 1; end 
+            
+            // Capture Zlow into the destination register Ra
+            T4: begin Zlowout = 1; Gra = 1; Rin = 1; end 
         endcase
     end
 endmodule

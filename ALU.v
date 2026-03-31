@@ -71,68 +71,69 @@ module booth_bit_pair_mul32 (
 endmodule
 
 // Shift-add Restoring Divider
+`timescale 1ns/10ps
 module div32 (
     input signed [31:0] dividend,
     input signed [31:0] divisor,
     output reg [63:0] result
 );
-    reg [31:0] Q, M;
-    reg [32:0] A; 
+    reg [31:0] Q, M_reg;
+    reg [32:0] A, M;
+    reg sign_Q, sign_M;
     integer i;
-    
-    // Variables to track original signs for the final adjustment [3]
-    reg is_neg_dividend;
-    reg is_neg_divisor;
-    reg sign_mismatch;
 
     always @(*) begin
-        // 1. Transform dividend/divisor into positive numbers [3]
-        is_neg_dividend = dividend[4];
-        is_neg_divisor = divisor[4];
-        sign_mismatch = is_neg_dividend ^ is_neg_divisor;
-        
-        Q = is_neg_dividend ? -dividend : dividend;
-        M = is_neg_divisor ? -divisor : divisor;
-        A = 33'b0; 
+        // 1. Extract the true sign bits (MSB)
+        sign_Q = dividend[ 31 ];
+        sign_M = divisor[ 31 ];
 
-        if (M != 0) begin
-            for (i = 0; i < 32; i = i + 1) begin
-                // Shift A and Q left one position
-                // Corrected: We ONLY move the MSB of Q (Q[4]) into the LSB of A
-                A = {A[31:0], Q[4]};
-                Q = Q << 1;
-                
-                // Subtract M from A
-                A = A - {1'b0, M};
-                
-                // Corrected: Explicitly check the sign bit of A (bit 32)
-                if (A[1]) begin 
-                    // Negative: set q0 to 0 and restore A [5]
-                    Q = 1'b0;         // Fix: Only update bit 0
-                    A = A + {1'b0, M}; 
-                end else begin
-                    // Positive: set q0 to 1 [5]
-                    Q = 1'b1;         // Fix: Only update bit 0
-                end
+        // 2. Convert operands to positive absolute magnitudes [5]
+        Q = sign_Q ? -dividend : dividend;
+        M_reg = sign_M ? -divisor : divisor;
+
+        // 3. Initialize Remainder (A) and Divisor (M) to 33 bits to prevent overflow [6]
+        A = 33'd0;
+        M = {1'b0, M_reg}; 
+
+        // 4. Non-Restoring Division Loop [4]
+        for (i = 0; i < 32; i = i + 1) begin
+            // Shift A and Q left 1 binary position [4]
+            A = {A[ 31:0 ], Q[ 31 ]};
+            Q = Q << 1;
+
+            // If A >= 0 (Sign bit A[3] is 0), subtract M; otherwise, add M [4]
+            if (A[ 32 ] == 0) begin
+                A = A - M;
+            end else begin
+                A = A + M;
             end
-            
-            // 2. Change the sign of the result [3]
-            if (sign_mismatch) begin
-                Q = -Q;             // Negate quotient if signs differed
+
+            // If A >= 0, set Q to 1; otherwise, set Q to 0 [4]
+            if (A[ 32 ] == 0) begin
+                Q[ 0 ] = 1'b1;
+            end else begin
+                Q[ 0 ] = 1'b0;
             end
-            if (is_neg_dividend) begin
-                A = -A[31:0];       // Remainder matches sign of the dividend
-            end
-        end else begin
-            // Handling divide by zero safeguard
-            Q = 32'b0;
-            A = 33'b0;
         end
-        
-        // Remainder in Zhigh, Quotient in Zlow
-        result = {A[31:0], Q}; 
+
+        // 5. If A < 0, restore the positive remainder by adding M back [4]
+        if (A[ 32 ] == 1'b1) begin
+            A = A + M;
+        end
+
+        // 6. Apply proper signs to results based on original operands [5]
+        if (sign_Q ^ sign_M) begin
+            Q = -Q;
+        end
+        if (sign_Q) begin
+            A = -A;
+        end
+
+        // 7. Route Remainder to Zhigh (HI) and Quotient to Zlow (LO) [7]
+        result = {A[ 31:0 ], Q};
     end
 endmodule
+
 
 // Main Phase-1 ALU
 module alu (
@@ -168,7 +169,7 @@ module alu (
         Z_next = 64'b0; 
         if      (AND_op)  Z_next = {32'b0, Y & Bus};
         else if (OR_op)   Z_next = {32'b0, Y | Bus};
-        else if (NOT_op)  Z_next = {32'b0, ~Bus};
+        else if (NOT_op)  Z_next = {32'd0, ~Bus};
         else if (ADD_op | SUB_op | NEG_op | IncPC_op)
                           Z_next = {32'b0, add_sub_res};
         else if (MUL_op)  Z_next = mul_res;

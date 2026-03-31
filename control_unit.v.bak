@@ -1,0 +1,328 @@
+`timescale 1ns/10ps
+module control_unit (
+    input Clock, Reset, Stop, CON_FF,
+    input [31:0] IR,
+    
+    // Datapath Control Signals
+    output reg Gra, Grb, Grc, Rin, Rout, BAout, Cout,
+    output reg Yin, Zin, PCout, IncPC, MARin, MDRin, MDRout,
+    output reg Zhighout, Zlowout, HIout, LOout, HIin, LOin,
+    output reg CONin, PCin, IRin, InPortout, OutPortin,
+    
+    // Memory and System Control Signals
+    output reg Read, Write, Clear, Run,
+    
+    // ALU Control Signals
+    output reg ADD_op, SUB_op, AND_op, OR_op, SHR_op, SHRA_op, 
+    output reg SHL_op, ROR_op, ROL_op, NEG_op, NOT_op, MUL_op, DIV_op
+);
+
+    // State definitions
+    parameter reset_state = 6'd0,
+              fetch0 = 6'd1, fetch1 = 6'd2, fetch2 = 6'd3,
+              alu_r_T3 = 6'd4, alu_r_T4 = 6'd5, alu_r_T5 = 6'd6,
+              alu_i_T3 = 6'd7, alu_i_T4 = 6'd8, alu_i_T5 = 6'd9,
+              neg_not_T3 = 6'd10, neg_not_T4 = 6'd11,
+              mul_div_T3 = 6'd12, mul_div_T4 = 6'd13, mul_div_T5 = 6'd14, mul_div_T6 = 6'd15,
+              ld_T3 = 6'd16, ld_T4 = 6'd17, ld_T5 = 6'd18, ld_T6 = 6'd19, ld_T7 = 6'd20,
+              ldi_T3 = 6'd21, ldi_T4 = 6'd22, ldi_T5 = 6'd23,
+              st_T3 = 6'd24, st_T4 = 6'd25, st_T5 = 6'd26, st_T6 = 6'd27, st_T7 = 6'd28,
+              branch_T3 = 6'd29, branch_T4 = 6'd30, branch_T5 = 6'd31, branch_T6 = 6'd32,
+              jr_T3 = 6'd33,
+              jal_T3 = 6'd34, jal_T4 = 6'd35,
+              mfhi_T3 = 6'd36, mflo_T3 = 6'd37,
+              in_T3 = 6'd38, out_T3 = 6'd39,
+              halt_T = 6'd40;
+
+    reg [5:0] present_state;
+
+    // FSM Sequential Logic (State Transitions)
+    always @(posedge Clock or posedge Reset) begin
+        if (Reset == 1'b1 || Stop == 1'b1) begin
+            present_state <= reset_state;
+        end else begin
+            case (present_state)
+                reset_state: present_state <= fetch0;
+                
+                // Instruction Fetch
+                fetch0: present_state <= fetch1;
+                fetch1: present_state <= fetch2;
+                fetch2: begin
+                    // Instruction Decoding (IR[31:27])
+                    case (IR[31:27])
+                        5'b00000, 5'b00001, 5'b00010, 5'b00011, 
+                        5'b00100, 5'b00101, 5'b00110, 5'b00111, 5'b01000: present_state <= alu_r_T3; // R-Type ALU
+                        5'b01001, 5'b01010, 5'b01011: present_state <= alu_i_T3; // I-Type ALU (Immediate)
+                        5'b01100, 5'b01101: present_state <= mul_div_T3; // Multiply / Divide
+                        5'b01110, 5'b01111: present_state <= neg_not_T3; // Negate / Not
+                        5'b10000: present_state <= ld_T3; // Load
+                        5'b10001: present_state <= ldi_T3; // Load Immediate
+                        5'b10010: present_state <= st_T3; // Store
+                        5'b10011: present_state <= jal_T3; // Jump and Link
+                        5'b10100: present_state <= jr_T3; // Jump Register
+                        5'b10101: present_state <= branch_T3; // Conditional Branches
+                        5'b10110: present_state <= in_T3; // Input Port
+                        5'b10111: present_state <= out_T3; // Output Port
+                        5'b11000: present_state <= mfhi_T3; // Move from HI
+                        5'b11001: present_state <= mflo_T3; // Move from LO
+                        5'b11010: present_state <= fetch0; // No-operation (nop)
+                        5'b11011: present_state <= halt_T; // Halt
+                        default: present_state <= fetch0;
+                    endcase
+                end
+
+                // R-Type ALU sequence
+                alu_r_T3: present_state <= alu_r_T4;
+                alu_r_T4: present_state <= alu_r_T5;
+                alu_r_T5: present_state <= fetch0;
+
+                // I-Type ALU sequence (Immediate)
+                alu_i_T3: present_state <= alu_i_T4;
+                alu_i_T4: present_state <= alu_i_T5;
+                alu_i_T5: present_state <= fetch0;
+
+                // Negate / Not sequence
+                neg_not_T3: present_state <= neg_not_T4;
+                neg_not_T4: present_state <= fetch0;
+
+                // Multiply / Divide sequence
+                mul_div_T3: present_state <= mul_div_T4;
+                mul_div_T4: present_state <= mul_div_T5;
+                mul_div_T5: present_state <= mul_div_T6;
+                mul_div_T6: present_state <= fetch0;
+
+                // Load (ld) sequence
+                ld_T3: present_state <= ld_T4;
+                ld_T4: present_state <= ld_T5;
+                ld_T5: present_state <= ld_T6;
+                ld_T6: present_state <= ld_T7;
+                ld_T7: present_state <= fetch0;
+
+                // Load Immediate (ldi) sequence
+                ldi_T3: present_state <= ldi_T4;
+                ldi_T4: present_state <= ldi_T5;
+                ldi_T5: present_state <= fetch0;
+
+                // Store (st) sequence
+                st_T3: present_state <= st_T4;
+                st_T4: present_state <= st_T5;
+                st_T5: present_state <= st_T6;
+                st_T6: present_state <= st_T7;
+                st_T7: present_state <= fetch0;
+
+                // Conditional Branch sequence
+                branch_T3: present_state <= branch_T4;
+                branch_T4: present_state <= branch_T5;
+                branch_T5: present_state <= branch_T6;
+                branch_T6: present_state <= fetch0;
+
+                // Jump and Link (jal) sequence
+                jal_T3: present_state <= jal_T4;
+                jal_T4: present_state <= fetch0;
+
+                // Jump Register (jr) sequence
+                jr_T3: present_state <= fetch0;
+
+                // Move from HI / LO sequences
+                mfhi_T3: present_state <= fetch0;
+                mflo_T3: present_state <= fetch0;
+
+                // IO Port sequences
+                in_T3: present_state <= fetch0;
+                out_T3: present_state <= fetch0;
+
+                // Halt sequence
+                halt_T: present_state <= halt_T;
+
+                default: present_state <= reset_state;
+            endcase
+        end
+    end
+
+    // FSM Combinational Logic (Outputs)
+    always @(*) begin
+        // Initialize all control signals to 0 to prevent inferred latches
+        Gra = 0; Grb = 0; Grc = 0; Rin = 0; Rout = 0; BAout = 0; Cout = 0;
+        Yin = 0; Zin = 0; PCout = 0; IncPC = 0; MARin = 0; MDRin = 0; MDRout = 0;
+        Zhighout = 0; Zlowout = 0; HIout = 0; LOout = 0; HIin = 0; LOin = 0;
+        CONin = 0; PCin = 0; IRin = 0; InPortout = 0; OutPortin = 0;
+        Read = 0; Write = 0; Clear = 0; Run = 1;
+        ADD_op = 0; SUB_op = 0; AND_op = 0; OR_op = 0; SHR_op = 0; SHRA_op = 0; 
+        SHL_op = 0; ROR_op = 0; ROL_op = 0; NEG_op = 0; NOT_op = 0; MUL_op = 0; DIV_op = 0;
+
+        case (present_state)
+            reset_state: begin
+                Clear = 1;
+            end
+
+            // --- Instruction Fetch ---
+            fetch0: begin 
+                PCout = 1; MARin = 1; IncPC = 1; Zin = 1; 
+            end
+            fetch1: begin 
+                Zlowout = 1; PCin = 1; Read = 1; MDRin = 1; 
+            end
+            fetch2: begin 
+                MDRout = 1; IRin = 1; 
+            end
+
+            // --- R-Type ALU Instructions (add, sub, and, or, shr, shra, shl, ror, rol) ---
+            alu_r_T3: begin 
+                Grb = 1; Rout = 1; Yin = 1; 
+            end
+            alu_r_T4: begin 
+                Grc = 1; Rout = 1; Zin = 1;
+                case (IR[31:27])
+                    5'b00000: ADD_op = 1;
+                    5'b00001: SUB_op = 1;
+                    5'b00010: AND_op = 1;
+                    5'b00011: OR_op = 1;
+                    5'b00100: SHR_op = 1;
+                    5'b00101: SHRA_op = 1;
+                    5'b00110: SHL_op = 1;
+                    5'b00111: ROR_op = 1;
+                    5'b01000: ROL_op = 1;
+                endcase
+            end
+            alu_r_T5: begin 
+                Zlowout = 1; Gra = 1; Rin = 1; 
+            end
+
+            // --- I-Type ALU Instructions (addi, andi, ori) ---
+            alu_i_T3: begin 
+                Grb = 1; Rout = 1; Yin = 1; 
+            end
+            alu_i_T4: begin 
+                Cout = 1; Zin = 1;
+                case (IR[31:27])
+                    5'b01001: ADD_op = 1;
+                    5'b01010: AND_op = 1;
+                    5'b01011: OR_op = 1;
+                endcase
+            end
+            alu_i_T5: begin 
+                Zlowout = 1; Gra = 1; Rin = 1; 
+            end
+
+            // --- Negate / Not Instructions ---
+            neg_not_T3: begin 
+                Grb = 1; Rout = 1; Zin = 1;
+                if (IR[31:27] == 5'b01110) NEG_op = 1;
+                else NOT_op = 1;
+            end
+            neg_not_T4: begin 
+                Zlowout = 1; Gra = 1; Rin = 1; 
+            end
+
+            // --- Multiply / Divide Instructions ---
+            mul_div_T3: begin 
+                Gra = 1; Rout = 1; Yin = 1; // Dump Dividend/Multiplicand into Y
+            end
+            mul_div_T4: begin 
+                Grb = 1; Rout = 1; Zin = 1;
+                if (IR[31:27] == 5'b01100) DIV_op = 1;
+                else MUL_op = 1;
+            end
+            mul_div_T5: begin 
+                Zlowout = 1; LOin = 1; // Capture quotient/lower product into LO
+            end
+            mul_div_T6: begin 
+                Zhighout = 1; HIin = 1; // Capture remainder/upper product into HI
+            end
+
+            // --- Load Instruction (ld) ---
+            ld_T3: begin 
+                Grb = 1; BAout = 1; Yin = 1; 
+            end
+            ld_T4: begin 
+                Cout = 1; ADD_op = 1; Zin = 1; 
+            end
+            ld_T5: begin 
+                Zlowout = 1; MARin = 1; 
+            end
+            ld_T6: begin 
+                Read = 1; MDRin = 1; 
+            end
+            ld_T7: begin 
+                MDRout = 1; Gra = 1; Rin = 1; 
+            end
+
+            // --- Load Immediate Instruction (ldi) ---
+            ldi_T3: begin 
+                Grb = 1; BAout = 1; Yin = 1; 
+            end
+            ldi_T4: begin 
+                Cout = 1; ADD_op = 1; Zin = 1; 
+            end
+            ldi_T5: begin 
+                Zlowout = 1; Gra = 1; Rin = 1; 
+            end
+
+            // --- Store Instruction (st) ---
+            st_T3: begin 
+                Grb = 1; BAout = 1; Yin = 1; 
+            end
+            st_T4: begin 
+                Cout = 1; ADD_op = 1; Zin = 1; 
+            end
+            st_T5: begin 
+                Zlowout = 1; MARin = 1; 
+            end
+            st_T6: begin 
+                Gra = 1; Rout = 1; MDRin = 1; 
+            end
+            st_T7: begin 
+                Write = 1; 
+            end
+
+            // --- Conditional Branch Instructions (brzr, brnz, brpl, brmi) ---
+            branch_T3: begin 
+                Gra = 1; Rout = 1; CONin = 1; 
+            end
+            branch_T4: begin 
+                PCout = 1; Yin = 1; 
+            end
+            branch_T5: begin 
+                Cout = 1; ADD_op = 1; Zin = 1; 
+            end
+            branch_T6: begin 
+                Zlowout = 1; 
+                PCin = CON_FF; // Branch taken conditionally based on CON logic output
+            end
+
+            // --- Jump and Link Instruction (jal) ---
+            jal_T3: begin 
+                PCout = 1; Gra = 1; Rin = 1; // Save PC into link register Ra
+            end
+            jal_T4: begin 
+                Grb = 1; Rout = 1; PCin = 1; // Set PC to jump target from register Rb
+            end
+
+            // --- Jump Register Instruction (jr) ---
+            jr_T3: begin 
+                Gra = 1; Rout = 1; PCin = 1; 
+            end
+
+            // --- MFHI / MFLO Instructions ---
+            mfhi_T3: begin 
+                HIout = 1; Gra = 1; Rin = 1; 
+            end
+            mflo_T3: begin 
+                LOout = 1; Gra = 1; Rin = 1; 
+            end
+
+            // --- Input / Output Instructions ---
+            in_T3: begin 
+                InPortout = 1; Gra = 1; Rin = 1; 
+            end
+            out_T3: begin 
+                Gra = 1; Rout = 1; OutPortin = 1; 
+            end
+
+            // --- Halt Instruction ---
+            halt_T: begin
+                Run = 0; // De-assert Run flag indefinitely
+            end
+        endcase
+    end
+endmodule
