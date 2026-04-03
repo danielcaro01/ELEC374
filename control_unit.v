@@ -15,7 +15,7 @@ module control_unit (
         fetch0      = 6'd1,
         fetch1      = 6'd2,
         fetch2      = 6'd3,
-        decode_state= 6'd50, // Added intermediate state for opcode decoding
+        decode_state= 6'd50, 
         alu3        = 6'd4,
         alu5        = 6'd5,
         add4        = 6'd6,
@@ -77,42 +77,38 @@ module control_unit (
                 reset_state: present_state <= fetch0;
                 fetch0:      present_state <= fetch1;
                 fetch1:      present_state <= fetch2;
-                
-                fetch2: begin
-                    // Wait one cycle for IRin to physically update the IR flip-flops
-                    present_state <= decode_state; 
-                end
+                fetch2:      present_state <= decode_state; 
                 
                 decode_state: begin
                     case (IR[31:27])
-                        5'b00000: present_state <= alu3;  // add
-                        5'b00001: present_state <= alu3;  // sub
-                        5'b00010: present_state <= alu3;  // and
-                        5'b00011: present_state <= alu3;  // or
-                        5'b00100: present_state <= alu3;  // shr
-                        5'b00101: present_state <= alu3;  // shra
-                        5'b00110: present_state <= alu3;  // shl
-                        5'b00111: present_state <= alu3;  // ror
-                        5'b01000: present_state <= alu3;  // rol
-                        5'b01001: present_state <= alu3;  // addi
-                        5'b01010: present_state <= alu3;  // andi
-                        5'b01011: present_state <= alu3;  // ori
-                        5'b01100: present_state <= div3;  // div
-                        5'b01101: present_state <= mul3;  // mul
-                        5'b01110: present_state <= neg3;  // neg
-                        5'b01111: present_state <= not3;  // not
-                        5'b10000: present_state <= mem3;  // ld
-                        5'b10001: present_state <= mem3;  // ldi
-                        5'b10010: present_state <= mem3;  // st
-                        5'b10011: present_state <= jal3;  // jal
-                        5'b10100: present_state <= jr3;   // jr
-                        5'b10101: present_state <= br3;   // branch
-                        5'b10110: present_state <= in3;   // in
-                        5'b10111: present_state <= out3;  // out
-                        5'b11000: present_state <= mfhi3; // mfhi
-                        5'b11001: present_state <= mflo3; // mflo
-                        5'b11010: present_state <= fetch0; // nop
-                        5'b11011: present_state <= halt_state; // halt
+                        5'b00000: present_state <= alu3;  
+                        5'b00001: present_state <= alu3;  
+                        5'b00010: present_state <= alu3;  
+                        5'b00011: present_state <= alu3;  
+                        5'b00100: present_state <= alu3;  
+                        5'b00101: present_state <= alu3;  
+                        5'b00110: present_state <= alu3;  
+                        5'b00111: present_state <= alu3;  
+                        5'b01000: present_state <= alu3;  
+                        5'b01001: present_state <= alu3;  
+                        5'b01010: present_state <= alu3;  
+                        5'b01011: present_state <= alu3;  
+                        5'b01100: present_state <= div3;  
+                        5'b01101: present_state <= mul3;  
+                        5'b01110: present_state <= neg3;  
+                        5'b01111: present_state <= not3;  
+                        5'b10000: present_state <= mem3;  
+                        5'b10001: present_state <= mem3;  
+                        5'b10010: present_state <= mem3;  
+                        5'b10011: present_state <= jal3;  
+                        5'b10100: present_state <= jr3;   
+                        5'b10101: present_state <= br3;   
+                        5'b10110: present_state <= in3;   
+                        5'b10111: present_state <= out3;  
+                        5'b11000: present_state <= mfhi3; 
+                        5'b11001: present_state <= mflo3; 
+                        5'b11010: present_state <= fetch0; // NOP
+                        5'b11011: present_state <= halt_state; // HALT
                         default:  present_state <= fetch0;
                     endcase
                 end
@@ -194,7 +190,6 @@ module control_unit (
                 mflo3: present_state <= fetch0;
                 
                 halt_state: present_state <= halt_state;
-
                 default: present_state <= fetch0;
             endcase
         end
@@ -204,13 +199,10 @@ module control_unit (
         Gra <= 0; Grb <= 0; Grc <= 0; Rin <= 0; Rout <= 0; BAout <= 0;
         Yin <= 0; Zin <= 0; PCout <= 0; IncPC <= 0; MARin <= 0; MDRin <= 0; MDRout <= 0;
         Read <= 0; Write <= 0; Clear <= 0;
-        
         ADD_op <= 0; SUB_op <= 0; MUL_op <= 0; DIV_op <= 0; SHR_op <= 0; SHRA_op <= 0; SHL_op <= 0; 
         ROR_op <= 0; ROL_op <= 0; AND_op <= 0; OR_op <= 0; NEG_op <= 0; NOT_op <= 0;
-        
         HIin <= 0; LOin <= 0; CONin <= 0; PCin <= 0; IRin <= 0; OutPortin <= 0; Cout <= 0;
         Zlowout <= 0; Zhighout <= 0; HIout <= 0; LOout <= 0; InPortout <= 0;
-        
         Run <= 1;
 
         case (present_state)
@@ -223,14 +215,8 @@ module control_unit (
             fetch2: begin
                 MDRout <= 1; IRin <= 1;
             end
-            
-            decode_state: begin
-                // Purely a structural delay state; no control signals asserted
-            end
 
-            alu3: begin
-                Grb <= 1; Rout <= 1; Yin <= 1;
-            end
+            alu3: begin Grb <= 1; Rout <= 1; Yin <= 1; end
             
             add4:  begin Grc <= 1; Rout <= 1; ADD_op <= 1; Zin <= 1; end
             sub4:  begin Grc <= 1; Rout <= 1; SUB_op <= 1; Zin <= 1; end
@@ -241,7 +227,6 @@ module control_unit (
             shl4:  begin Grc <= 1; Rout <= 1; SHL_op <= 1; Zin <= 1; end
             ror4:  begin Grc <= 1; Rout <= 1; ROR_op <= 1; Zin <= 1; end
             rol4:  begin Grc <= 1; Rout <= 1; ROL_op <= 1; Zin <= 1; end
-            
             addi4: begin Cout <= 1; ADD_op <= 1; Zin <= 1; end
             andi4: begin Cout <= 1; AND_op <= 1; Zin <= 1; end
             ori4:  begin Cout <= 1; OR_op <= 1; Zin <= 1; end
@@ -288,14 +273,8 @@ module control_unit (
             mfhi3: begin HIout <= 1; Gra <= 1; Rin <= 1; end
             mflo3: begin LOout <= 1; Gra <= 1; Rin <= 1; end
 
-            halt_state: begin 
-                Run <= 0; 
-            end
-            
-            reset_state: begin 
-                Clear <= 1; 
-            end
-            
+            halt_state: begin Run <= 0; end
+            reset_state: begin Clear <= 1; end
             default: begin end
         endcase
     end

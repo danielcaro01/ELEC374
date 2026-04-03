@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/danie/ELEC374/simulation/modelsim
 vadd_sub32
-Z1 !s110 1774920685
+Z1 !s110 1774987899
 !i10b 1
 !s100 B4<Oi^XFkGj[AFKVO06423
 IhciYlkCKm?=K8BUYNR@=:0
@@ -23,7 +23,7 @@ Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1774920685.000000
+Z7 !s108 1774987899.000000
 Z8 !s107 C:/Users/danie/ELEC374/ALU.v|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/ALU.v|
 !i113 1
@@ -97,7 +97,7 @@ R10
 R11
 R12
 vcon_ff_logic
-Z14 !s110 1774920686
+Z14 !s110 1774987900
 !i10b 1
 !s100 nZU=99Hezm^aTLXF4QnCK1
 IKd1YJ[:kHYfWaJa;RflgB0
@@ -111,7 +111,7 @@ R6
 r1
 !s85 0
 31
-R7
+Z15 !s108 1774987900.000000
 !s107 C:/Users/danie/ELEC374/con_ff_logic.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/con_ff_logic.v|
 !i113 1
@@ -121,11 +121,11 @@ R12
 vcontrol_unit
 R14
 !i10b 1
-!s100 =3gh?Ekb88?dhR:VGkGGz3
-I6?X0n3U>gfR<b>29Tl[Q[3
+!s100 Th<g7K[cBNz2CG<@6:ad50
+IUEDmCZ<a>Ek93YNSP_8QY0
 R2
 R0
-w1774919606
+w1774987724
 8C:/Users/danie/ELEC374/control_unit.v
 FC:/Users/danie/ELEC374/control_unit.v
 L0 2
@@ -133,7 +133,7 @@ R6
 r1
 !s85 0
 31
-Z15 !s108 1774920686.000000
+R15
 !s107 C:/Users/danie/ELEC374/control_unit.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/control_unit.v|
 !i113 1
@@ -275,7 +275,7 @@ R10
 R11
 R12
 vregister
-R1
+!s110 1774987898
 !i10b 1
 !s100 DoNhMfJfX?BFFWeWdacNl1
 IE7iNza0K[VTRdkLngXBPD2
@@ -289,7 +289,7 @@ R6
 r1
 !s85 0
 31
-R7
+!s108 1774987898.000000
 !s107 C:/Users/danie/ELEC374/register.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/register.v|
 !i113 1
@@ -365,11 +365,11 @@ R12
 vtb_phase3
 R14
 !i10b 1
-!s100 E6NMRn8@<A40F5HMQkGX83
-IH?GP>RCY5Fh`>gkiaKQ9g2
+!s100 a5:<70IBQ6>Vozzf:;5763
+I5gkOP3k?ZeG2Q:FBGh;_P3
 R2
 R0
-w1774918978
+w1774987721
 8C:/Users/danie/ELEC374/tb_phase3.v
 FC:/Users/danie/ELEC374/tb_phase3.v
 L0 2

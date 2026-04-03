@@ -11,6 +11,7 @@ module tb_phase3;
     wire [31:0] R0_out, R1_out, R2_out, R3_out, R4_out, R5_out, R6_out, R7_out;
     wire [31:0] R8_out, R9_out, R10_out, R11_out, R12_out, R13_out, R14_out, R15_out;
 
+    // Instantiate the top-level Phase 3 datapath
     DataPath DUT (
         .clk(clk),
         .reset(reset),
@@ -31,24 +32,22 @@ module tb_phase3;
     end
 
     initial begin
+        // Mandatory lines for GTKWave waveform generation
         $dumpfile("tb_phase3.vcd");
         $dumpvars(0, tb_phase3);
 
         InPort_data_in = 32'h00000000;
         stop = 0;
 
-        // Load the hex file and initialize required memory addresses directly in the testbench [1].
+        // Load the Phase 3 memory file into the RAM module
         $readmemh("program.hex", DUT.RAM.memory);
         
-        // Initialize memory locations 0x89 and 0xA3 with the 32-bit hexadecimal values 0xA7 and 0x68, respectively [2].
-        DUT.RAM.memory[9'h089] = 32'h000000A7; 
-        DUT.RAM.memory[9'h0A3] = 32'h00000068; 
-
+        // Trigger system reset
         reset = 1;
         #25;
-
         reset = 0;
 
+        // Allow execution to run through the jal and halt instructions
         #127500;
 
         $display("Simulation complete.");
