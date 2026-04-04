@@ -7,40 +7,40 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/danie/ELEC374/simulation/modelsim
+Z0 dC:/Users/20djc12/ELEC374/simulation/modelsim
 vadd_sub32
-Z1 !s110 1774987899
+Z1 !s110 1775268189
 !i10b 1
-!s100 B4<Oi^XFkGj[AFKVO06423
-IhciYlkCKm?=K8BUYNR@=:0
+!s100 P82SELSgS_Y:hG5Z4kzE`1
+IIoS0mH@L^0WjdZ@h9VI<J3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1774910984
-Z4 8C:/Users/danie/ELEC374/ALU.v
-Z5 FC:/Users/danie/ELEC374/ALU.v
-L0 28
+Z3 w1775254978
+Z4 8C:/Users/20djc12/ELEC374/ALU.v
+Z5 FC:/Users/20djc12/ELEC374/ALU.v
+L0 62
 Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1774987899.000000
-Z8 !s107 C:/Users/danie/ELEC374/ALU.v|
-Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/ALU.v|
+Z7 !s108 1775268189.000000
+Z8 !s107 C:/Users/20djc12/ELEC374/ALU.v|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/ALU.v|
 !i113 1
 Z10 o-vlog01compat -work work
-Z11 !s92 -vlog01compat -work work +incdir+C:/Users/danie/ELEC374
+Z11 !s92 -vlog01compat -work work +incdir+C:/Users/20djc12/ELEC374
 Z12 tCvgOpt 0
 valu
 R1
 !i10b 1
-!s100 BIm:QTbMBYCDk=29EGKK<1
-IAL1k8HaE8UgSjMdjZ7l?20
+!s100 Ka]>BW]2Q7OdbfFg1`0cl2
+IKK>eQ60ER7Ejh_[_JWjM51
 R2
 R0
 R3
 R4
 R5
-L0 139
+L0 157
 R6
 r1
 !s85 0
@@ -55,14 +55,14 @@ R12
 vbooth_bit_pair_mul32
 R1
 !i10b 1
-!s100 X4n=AE0WVDXifO@[>9j2H0
-IjN7n`=]MDi<;=lQRAhDba3
+!s100 ^dBDoZAG;Knd7]G0G`H3Y1
+IL^>oLMXLHPDGRVD@Z8]0R3
 R2
 R0
 R3
 R4
 R5
-L0 40
+L0 72
 R6
 r1
 !s85 0
@@ -77,65 +77,65 @@ R12
 vbus
 R1
 !i10b 1
-!s100 Y@DbB@n531Hz48]_8c1UD0
-I7B_Zk7_SIQ=`M:Z^oRVZ;1
+!s100 @3AdMamV[47dXRLN7VPh@0
+IDe1;^2Bf5`h7f1772zN6g0
 R2
 R0
-Z13 w1774323666
-8C:/Users/danie/ELEC374/Bus.v
-FC:/Users/danie/ELEC374/Bus.v
-L0 1
+w1775253734
+8C:/Users/20djc12/ELEC374/Bus.v
+FC:/Users/20djc12/ELEC374/Bus.v
+L0 6
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/danie/ELEC374/Bus.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/Bus.v|
+!s107 C:/Users/20djc12/ELEC374/Bus.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/Bus.v|
 !i113 1
 R10
 R11
 R12
 vcon_ff_logic
-Z14 !s110 1774987900
+R1
 !i10b 1
-!s100 nZU=99Hezm^aTLXF4QnCK1
-IKd1YJ[:kHYfWaJa;RflgB0
+!s100 E0_1hlzS80zc_31WfV31Y0
+I0bzdRW:79a=;nOm?XE]oE3
 R2
 R0
-R13
-8C:/Users/danie/ELEC374/con_ff_logic.v
-FC:/Users/danie/ELEC374/con_ff_logic.v
-L0 3
+Z13 w1775253736
+8C:/Users/20djc12/ELEC374/con_ff_logic.v
+FC:/Users/20djc12/ELEC374/con_ff_logic.v
+L0 5
 R6
 r1
 !s85 0
 31
-Z15 !s108 1774987900.000000
-!s107 C:/Users/danie/ELEC374/con_ff_logic.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/con_ff_logic.v|
+R7
+!s107 C:/Users/20djc12/ELEC374/con_ff_logic.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/con_ff_logic.v|
 !i113 1
 R10
 R11
 R12
 vcontrol_unit
-R14
+R1
 !i10b 1
-!s100 Th<g7K[cBNz2CG<@6:ad50
-IUEDmCZ<a>Ek93YNSP_8QY0
+!s100 2H@nA7Cz>Ne6b>C;1jQ=a1
+IFCkL4LXVIdA_WfJVh[8Zm1
 R2
 R0
-w1774987724
-8C:/Users/danie/ELEC374/control_unit.v
-FC:/Users/danie/ELEC374/control_unit.v
-L0 2
+Z14 w1775253735
+8C:/Users/20djc12/ELEC374/control_unit.v
+FC:/Users/20djc12/ELEC374/control_unit.v
+L0 5
 R6
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/danie/ELEC374/control_unit.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/control_unit.v|
+R7
+!s107 C:/Users/20djc12/ELEC374/control_unit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/control_unit.v|
 !i113 1
 R10
 R11
@@ -143,21 +143,21 @@ R12
 vDataPath
 R1
 !i10b 1
-!s100 4P7o7K=OjOh6TRgCncnA13
-I^EF;?>Z<cW=0Kn;H:GWaJ3
+!s100 31=ZhQM`WdMoQR=fmM6BP2
+I[?<b3<Y@6`IzLi3fdAYH:1
 R2
 R0
-w1774916599
-8C:/Users/danie/ELEC374/DataPath.v
-FC:/Users/danie/ELEC374/DataPath.v
-L0 2
+w1775253733
+8C:/Users/20djc12/ELEC374/DataPath.v
+FC:/Users/20djc12/ELEC374/DataPath.v
+L0 4
 R6
 r1
 !s85 0
 31
-R7
-!s107 C:/Users/danie/ELEC374/DataPath.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/DataPath.v|
+Z15 !s108 1775268188.000000
+!s107 C:/Users/20djc12/ELEC374/DataPath.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/DataPath.v|
 !i113 1
 R10
 R11
@@ -166,14 +166,14 @@ n@data@path
 vdiv32
 R1
 !i10b 1
-!s100 9aJ54O]5[Hmm^0a3[GPoO1
-I`MKmfzL0^Qj=]<WkhWa`g1
+!s100 DXLMGIDe>ge;_kL]1IXgd3
+IcOSbzJ;7k_c<iMSzI:^SL3
 R2
 R0
 R3
 R4
 R5
-L0 75
+L0 110
 R6
 r1
 !s85 0
@@ -188,21 +188,21 @@ R12
 vencoder_32to5
 R1
 !i10b 1
-!s100 TTiKX`C8MCVH8W<1@M4he3
-I;>6P0ea`3gWkd`QEKoP`Q1
+!s100 CEigO[UOMAZlC49d?:gU03
+I9NOHSJ4ABG_M8k^AQ:e9Y3
 R2
 R0
-w1774404587
-8C:/Users/danie/ELEC374/encoder_32to5.v
-FC:/Users/danie/ELEC374/encoder_32to5.v
-L0 2
+w1775252068
+8C:/Users/20djc12/ELEC374/encoder_32to5.v
+FC:/Users/20djc12/ELEC374/encoder_32to5.v
+L0 8
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/danie/ELEC374/encoder_32to5.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/encoder_32to5.v|
+!s107 C:/Users/20djc12/ELEC374/encoder_32to5.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/encoder_32to5.v|
 !i113 1
 R10
 R11
@@ -210,14 +210,14 @@ R12
 vfull_adder
 R1
 !i10b 1
-!s100 J8M@:XzRM^_m2eAaIADSi3
-IGLe`iBdWS?47C4JfFHcdG0
+!s100 YEYJ^ADSIcf__h63dii<G0
+IGeCK]mDmgLRGOTkK703923
 R2
 R0
 R3
 R4
 R5
-L0 3
+L0 5
 R6
 r1
 !s85 0
@@ -232,21 +232,21 @@ R12
 vMDR
 R1
 !i10b 1
-!s100 E9<VYReN=2zM<aO@Ve_R13
-IR_A>dYb9oFCjjnP6==57S0
+!s100 `WiMC[D[C>PW@KkbL7^fE2
+I<KX]>iJ;?Q`z3Ro??YaQc1
 R2
 R0
-w1774917679
-8C:/Users/danie/ELEC374/MDR.v
-FC:/Users/danie/ELEC374/MDR.v
-L0 2
+w1775253737
+8C:/Users/20djc12/ELEC374/MDR.v
+FC:/Users/20djc12/ELEC374/MDR.v
+L0 4
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/danie/ELEC374/MDR.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/MDR.v|
+!s107 C:/Users/20djc12/ELEC374/MDR.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/MDR.v|
 !i113 1
 R10
 R11
@@ -255,43 +255,43 @@ n@m@d@r
 vram_512x32
 R1
 !i10b 1
-!s100 Rij^DQzG_CEC>F6<@CB9i0
-IJzD?2ml;1oVO]Ng2DD?Zm0
+!s100 cZ@DZZ5P61X:Vf1A=5jTP3
+I]nkGbM[LWEQM`d9mLP;h@3
 R2
 R0
-w1774918979
-8C:/Users/danie/ELEC374/ram_512x32.v
-FC:/Users/danie/ELEC374/ram_512x32.v
-L0 2
+R13
+8C:/Users/20djc12/ELEC374/ram_512x32.v
+FC:/Users/20djc12/ELEC374/ram_512x32.v
+L0 5
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/danie/ELEC374/ram_512x32.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/ram_512x32.v|
+!s107 C:/Users/20djc12/ELEC374/ram_512x32.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/ram_512x32.v|
 !i113 1
 R10
 R11
 R12
 vregister
-!s110 1774987898
+!s110 1775268188
 !i10b 1
-!s100 DoNhMfJfX?BFFWeWdacNl1
-IE7iNza0K[VTRdkLngXBPD2
+!s100 EM4NBBDZQZoZT2imH9c8Q0
+IHRI4>LNfP79Xj5`T?QHX_1
 R2
 R0
 R13
-8C:/Users/danie/ELEC374/register.v
-FC:/Users/danie/ELEC374/register.v
-L0 3
+8C:/Users/20djc12/ELEC374/register.v
+FC:/Users/20djc12/ELEC374/register.v
+L0 5
 R6
 r1
 !s85 0
 31
-!s108 1774987898.000000
-!s107 C:/Users/danie/ELEC374/register.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/register.v|
+R15
+!s107 C:/Users/20djc12/ELEC374/register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/register.v|
 !i113 1
 R10
 R11
@@ -299,21 +299,21 @@ R12
 vregister_r0
 R1
 !i10b 1
-!s100 e[6F:=BXg:P:g53Ae@V`L2
-IUEM86OjF><ciT=maVKWEl2
+!s100 eT4USNBEE`i3M`Q>2Wl=?2
+I]fPZ[KU5zhVNgWLz8?5FA3
 R2
 R0
-R13
-8C:/Users/danie/ELEC374/register_r0.v
-FC:/Users/danie/ELEC374/register_r0.v
-L0 3
+w1775249739
+8C:/Users/20djc12/ELEC374/register_r0.v
+FC:/Users/20djc12/ELEC374/register_r0.v
+L0 5
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/danie/ELEC374/register_r0.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/register_r0.v|
+!s107 C:/Users/20djc12/ELEC374/register_r0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/register_r0.v|
 !i113 1
 R10
 R11
@@ -321,14 +321,14 @@ R12
 vripple_adder32
 R1
 !i10b 1
-!s100 I8BAbRHm?l:kSIZlRMUWn0
-I10>NQ9Ll0e`1^91ijeaPz1
+!s100 DePP:=X=2_1k67@_0j>OZ3
+I1n@QEXZdke1]gVoINV>150
 R2
 R0
 R3
 R4
 R5
-L0 11
+L0 12
 R6
 r1
 !s85 0
@@ -343,43 +343,43 @@ R12
 vselect_encode_logic
 R1
 !i10b 1
-!s100 j=^mh]g<nUaNB_^KFITd:0
-IQE>0JSz2_SC@>IomoH[m63
+!s100 mT]:NiWGB=aG>a:lW@LhY1
+Ihm@XI7_Nk:RgKWlIkULKO1
 R2
 R0
-w1774391833
-8C:/Users/danie/ELEC374/select_encode_logic.v
-FC:/Users/danie/ELEC374/select_encode_logic.v
+R14
+8C:/Users/20djc12/ELEC374/select_encode_logic.v
+FC:/Users/20djc12/ELEC374/select_encode_logic.v
+L0 5
+R6
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/20djc12/ELEC374/select_encode_logic.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/select_encode_logic.v|
+!i113 1
+R10
+R11
+R12
+vtb_phase3
+R1
+!i10b 1
+!s100 a5:<70IBQ6>Vozzf:;5763
+I3DD1hNLj[eIDFlM;5>mQ_0
+R2
+R0
+w1775245250
+8C:/Users/20djc12/ELEC374/tb_phase3.v
+FC:/Users/20djc12/ELEC374/tb_phase3.v
 L0 2
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/danie/ELEC374/select_encode_logic.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/select_encode_logic.v|
-!i113 1
-R10
-R11
-R12
-vtb_phase3
-R14
-!i10b 1
-!s100 a5:<70IBQ6>Vozzf:;5763
-I5gkOP3k?ZeG2Q:FBGh;_P3
-R2
-R0
-w1774987721
-8C:/Users/danie/ELEC374/tb_phase3.v
-FC:/Users/danie/ELEC374/tb_phase3.v
-L0 2
-R6
-r1
-!s85 0
-31
-R15
-!s107 C:/Users/danie/ELEC374/tb_phase3.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/danie/ELEC374|C:/Users/danie/ELEC374/tb_phase3.v|
+!s107 C:/Users/20djc12/ELEC374/tb_phase3.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/20djc12/ELEC374|C:/Users/20djc12/ELEC374/tb_phase3.v|
 !i113 1
 R10
 R11
